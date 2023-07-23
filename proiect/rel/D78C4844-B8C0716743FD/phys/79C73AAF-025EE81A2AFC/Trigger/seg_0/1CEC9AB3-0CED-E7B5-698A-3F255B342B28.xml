@@ -1,0 +1,31 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="ADAUGARE_ELEV_IN_SPECTACOL" directorySegmentName="seg_0" id="1CEC9AB3-0CED-E7B5-698A-3F255B342B28">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PBD_STUD_121</sourceObjSchema>
+<sourceObjName>ADAUGARE_ELEV_IN_SPECTACOL</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:36 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<actions>INSERT</actions>
+<body><![CDATA[DECLARE
+    v_flag BOOLEAN;
+BEGIN
+    dbms_output.put_line('AIIIIICI');
+    dbms_output.put_line(:new.spectacole_id_spectacol);
+    verifica_daca_nu_a_fost_atinsa_capacitatea(:new.spectacole_id_spectacol, v_flag);
+    dbms_output.put_line('s-a executat asta');
+    IF v_flag = false then   
+        dbms_output.put_line('v_flag este false');
+    ELSE 
+        dbms_output.put_line('v_flag este true');
+    END IF;
+    IF v_flag = FALSE THEN
+--        dbms_output.put_line('Nu mai sunt locuri disponibile pentru acest spectacol');
+        RAISE_APPLICATION_ERROR(-20001,'Nu mai sunt locuri disponibile pentru acest spectacol');
+    END IF;
+END;
+]]></body>
+<triggerTime>BEFORE</triggerTime>
+<owner>A6A6F46F-FC61-FB2E-FC75-5FC0F42703D3</owner>
+<table>A6BE744F-36E3-51AC-2B44-0BEBE29375FA</table>
+</TriggerOraclev10g>

@@ -1,0 +1,255 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<PackageOracle class="oracle.dbtools.crest.model.design.storage.oracle.PackageOracle" name="VIZUALIZARI" directorySegmentName="seg_0" id="F36972D0-1EA4-C50C-05F1-2438CC0ED918">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PBD_STUD_121</sourceObjSchema>
+<sourceObjName>VIZUALIZARI</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:38 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<owner><![CDATA[A6A6F46F-FC61-FB2E-FC75-5FC0F42703D3]]></owner>
+<source>CREATE OR REPLACE PACKAGE PBD_STUD_121.VIZUALIZARI IS
+    PROCEDURE afiseaza_elevi;
+    PROCEDURE afiseaza_elevi_din_anumita_grupa(p_id_grupa grupe.id_grupa%TYPE);
+    PROCEDURE afiseaza_grupele_asignate_unei_anumite_sali(p_id_sala sali.id_sala%TYPE);
+    PROCEDURE afiseaza_pianistul_unei_grupe(p_id_grupa grupe.id_grupa%TYPE);
+    PROCEDURE afiseaza_spectacolele_la_care_nu_au_fost_introdusi_elevi;
+    PROCEDURE afiseaza_grupe_in_care_mai_incap_elevi;
+    PROCEDURE afiseaza_elev(p_id_elev elevi.id_elev%TYPE);
+    PROCEDURE afiseaza_spectacole_la_care_a_participat_elev(p_id_elev elevi.id_elev%TYPE);
+    PROCEDURE afiseaza_spectacole_la_care_a_participat_elev_din_istoric(p_id_elev elevi.id_elev%TYPE);
+END;</source>
+<body class="oracle.dbtools.crest.model.design.storage.oracle.PackageBodyOracle" name="VIZUALIZARI" id="F36972D0-1EA4-C50C-05F1-2438CC0ED918">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PBD_STUD_121</sourceObjSchema>
+<sourceObjName>VIZUALIZARI</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:38 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<owner><![CDATA[A6A6F46F-FC61-FB2E-FC75-5FC0F42703D3]]></owner>
+<source>CREATE OR REPLACE PACKAGE BODY PBD_STUD_121.VIZUALIZARI IS   
+    PROCEDURE afiseaza_spectacole_la_care_a_participat_elev(p_id_elev elevi.id_elev%TYPE)
+    IS
+        CURSOR c IS
+            SELECT id_spectacol
+            FROM elevi_spectacol_istoric
+            WHERE id_elev = p_id_elev;
+        v_id_spectacol spectacole.id_spectacol%TYPE;
+    BEGIN
+        verificari.verifica_daca_exista_elev(p_id_elev);
+        dbms_output.put_line(&apos;Spectacolele din istoric la care a participat elevul: &apos;);
+        OPEN c;
+        LOOP
+            FETCH c INTO v_id_spectacol;
+            EXIT WHEN c%NOTFOUND;
+            dbms_output.put_line(v_id_spectacol);
+        END LOOP;
+        CLOSE c;
+        EXCEPTION
+         WHEN OTHERS THEN
+                dbms_output.put_line(&apos;Error: &apos; || SQLERRM);
+    END;
+
+    PROCEDURE afiseaza_spectacole_la_care_a_participat_elev_din_istoric(p_id_elev elevi.id_elev%TYPE)
+    IS
+        CURSOR c IS
+            SELECT spectacole_id_spectacol
+            FROM elevi_spectacol
+            WHERE elevi_id_elev = p_id_elev;
+        v_id_spectacol spectacole.id_spectacol%TYPE;
+    BEGIN
+        verificari.verifica_daca_exista_elev(p_id_elev);
+        dbms_output.put_line(&apos;Spectacolele la care a participat elevul: &apos;);
+        OPEN c;
+        LOOP
+            FETCH c INTO v_id_spectacol;
+            EXIT WHEN c%NOTFOUND;
+            dbms_output.put_line(v_id_spectacol);
+        END LOOP;
+
+        CLOSE c;
+
+        EXCEPTION
+         WHEN OTHERS THEN
+                dbms_output.put_line(&apos;Error: &apos; || SQLERRM);
+    END;
+
+    PROCEDURE afiseaza_elev(p_id_elev elevi.id_elev%TYPE)
+    IS  
+        v_elev elevi%ROWTYPE;
+    BEGIN
+        verificari.verifica_daca_exista_elev(p_id_elev);
+
+        SELECT * 
+        INTO v_elev
+        FROM elevi
+        WHERE id_elev = p_id_elev;
+
+        dbms_output.put_line(&apos;Elevul cu id-ul &apos;||p_id_elev||&apos; este :&apos; || v_elev.nume||&apos; &apos;||v_elev.prenume||&apos; aflat in grupa &apos;||v_elev.grupe_id_grupa||&apos;cu statutul de &apos; || v_elev.statut||&apos; cu varsta de &apos;||v_elev.varsta);
+
+        EXCEPTION
+         WHEN OTHERS THEN
+                dbms_output.put_line(&apos;Error: &apos; || SQLERRM);
+    END;
+
+    PROCEDURE afiseaza_grupe_in_care_mai_incap_elevi
+    IS
+        CURSOR c IS
+            SELECT * FROM grupe;
+        v_row grupe%ROWTYPE;
+        v_capacitate sali.capacitate%TYPE;
+        v_nr_elevi NUMBER;  
+        v_e NUMBER;
+    BEGIN
+        OPEN c;
+        LOOP
+            FETCH c INTO v_row;
+            EXIT WHEN c%NOTFOUND;
+
+            SELECT capacitate
+            INTO v_capacitate
+            FROM sali
+            WHERE id_sala = v_row.sali_id_sala;
+
+            SELECT COUNT(*)
+            INTO v_nr_elevi
+            FROM elevi
+            WHERE grupe_id_grupa = v_row.id_grupa;
+
+            IF v_nr_elevi &lt; v_capacitate THEN
+                v_e := v_capacitate - v_nr_elevi;
+                dbms_output.put_line(&apos;In grupa &apos;||v_row.id_grupa||&apos; mai incap &apos;||v_e||&apos; elevi.&apos;);
+            END IF;
+
+        END LOOP;
+
+    END;
+
+    PROCEDURE afiseaza_spectacolele_la_care_nu_au_fost_introdusi_elevi
+    IS
+        CURSOR c IS
+            SELECT * FROM spectacole;
+        v_nr_elevi NUMBER;
+        v_nr_elevi_istoric NUMBER;
+        v_row spectacole%ROWTYPE;
+        v_flag BOOLEAN := false;
+    BEGIN 
+        OPEN c;
+        LOOP
+            FETCH c INTO v_row;
+            EXIT WHEN c%NOTFOUND;
+
+            SELECT count(*) INTO v_nr_elevi
+            FROM elevi_spectacol
+            WHERE spectacole_id_spectacol = v_row.id_spectacol;
+
+            SELECT count(*) INTO v_nr_elevi_istoric
+            FROM elevi_spectacol_istoric    
+            WHERE id_spectacol = v_row.id_spectacol;
+
+            v_nr_elevi := v_nr_elevi + v_nr_elevi_istoric;
+            IF v_nr_elevi = 0 THEN
+                v_flag := true;
+                dbms_output.put_line(&apos;Spectacolul &apos;||v_row.nume_spectacol||&apos; nu are niciun elev introdus&apos;);
+            END IF;   
+        END LOOP;
+        CLOSE c;
+        IF v_flag = false THEN
+            dbms_output.put_line(&apos;Nu sau gasit spectacole la care sa nu fi fost introdus niciun elev &apos;);
+        END IF;
+        EXCEPTION
+         WHEN OTHERS THEN
+                dbms_output.put_line(&apos;Error: &apos; || SQLERRM);
+    END; 
+
+    PROCEDURE afiseaza_pianistul_unei_grupe
+        (p_id_grupa grupe.id_grupa%TYPE)
+    IS 
+        CURSOR c IS
+            SELECT *
+            FROM pianisti
+            WHERE grupe_id_grupa = p_id_grupa;
+        v_row pianisti%ROWTYPE;
+    BEGIN 
+        dbms_output.put_line(&apos;Pianistul grupei &apos;||p_id_grupa||&apos; este: &apos;);
+        verificari.verifica_daca_exsita_grupa(p_id_grupa);
+        OPEN c;
+        LOOP
+            FETCH c INTO v_row;
+            EXIT WHEN c%NOTFOUND;
+            dbms_output.put_line(v_row.nume||&apos; &apos;||v_row.prenume);
+        END LOOP;
+
+    END;
+
+    PROCEDURE afiseaza_elevi
+    IS
+        CURSOR c IS
+            SELECT *
+            FROM elevi;
+        v_elev elevi%ROWTYPE;
+    BEGIN
+
+        OPEN c;
+        LOOP
+            FETCH c INTO v_elev;
+            EXIT WHEN c%NOTFOUND;
+            dbms_output.put_line(&apos;Elevul : &apos;||v_elev.nume||&apos; &apos;||v_elev.prenume||&apos; cu varsta &apos;||v_elev.varsta||&apos; cu statutul &apos;||v_elev.statut||&apos; este in grupa &apos;||v_elev.grupe_id_grupa);
+        END LOOP;
+        CLOSE c;
+    END;
+
+    PROCEDURE afiseaza_elevi_din_anumita_grupa
+        (p_id_grupa grupe.id_grupa%TYPE)
+    IS
+        CURSOR c IS
+            SELECT *
+            FROM elevi
+            WHERE grupe_id_grupa = p_id_grupa;
+        v_elev elevi%ROWTYPE;
+    BEGIN
+        verificari.verifica_daca_exsita_grupa(p_id_grupa);
+        OPEN c;
+        dbms_output.put_line(&apos;Elevii grupei &apos;||p_id_grupa||&apos; sunt: &apos;);
+        LOOP
+            FETCH c INTO v_elev;
+            EXIT WHEN c%NOTFOUND;
+            dbms_output.put_line(&apos;Elevul : &apos;||v_elev.nume||&apos; &apos;||v_elev.prenume||&apos; cu varsta &apos;||v_elev.varsta||&apos; cu statutul &apos;||v_elev.statut);
+        END LOOP;
+        IF c%ROWCOUNT = 0 THEN
+            dbms_output.put_line(&apos;Nu sunt elevi in aceasta grupa &apos;);
+        END IF;
+        CLOSE c;
+
+         EXCEPTION
+         WHEN OTHERS THEN
+                dbms_output.put_line(&apos;Error: &apos; || SQLERRM);
+    END;
+
+    PROCEDURE afiseaza_grupele_asignate_unei_anumite_sali
+        (p_id_sala sali.id_sala%TYPE)
+    IS 
+        CURSOR c IS
+        SELECT * 
+        from grupe 
+        WHERE sali_id_sala = p_id_sala;
+        v_row grupe%ROWTYPE;
+    BEGIN
+        verificari.verifica_daca_exista_sala(p_id_sala);
+        dbms_output.put_line(&apos;Grupele asignate salii &apos;||v_row.sali_id_sala||&apos; sunt: &apos;);
+        OPEN c;
+        LOOP
+            FETCH c INTO v_row;
+            EXIT WHEN c%NOTFOUND;
+            dbms_output.put_line(&apos;Grupa &apos;||v_row.id_grupa);
+        END LOOP;
+         IF c%ROWCOUNT = 0 THEN
+            dbms_output.put_line(&apos;Nu s-au gasit grupe &apos;);
+        END IF;
+        CLOSE c;
+        EXCEPTION
+         WHEN OTHERS THEN
+                dbms_output.put_line(&apos;Error: &apos; || SQLERRM);
+    END;     
+END;</source>
+</body>
+</PackageOracle>

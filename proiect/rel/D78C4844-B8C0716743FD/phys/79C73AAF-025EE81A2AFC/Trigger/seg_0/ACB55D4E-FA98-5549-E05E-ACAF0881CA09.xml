@@ -1,0 +1,43 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="VERIFICA_DACA_SE_POATE_INTRODUCE_ELEV_NOU_IN_GRUPA" directorySegmentName="seg_0" id="ACB55D4E-FA98-5549-E05E-ACAF0881CA09">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PBD_STUD_121</sourceObjSchema>
+<sourceObjName>VERIFICA_DACA_SE_POATE_INTRODUCE_ELEV_NOU_IN_GRUPA</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:36 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<actions>INSERT, UPDATE</actions>
+<body><![CDATA[DECLARE
+  ex_capacitate_sala_depasita EXCEPTION;
+  TYPE elev_rec_type IS RECORD
+    (p_id_grupa elevi.grupe_id_grupa%TYPE,
+     p_id_elev elevi.id_elev%TYPE);
+  TYPE rc_dept IS REF CURSOR RETURN elev_rec_type;
+  rc rc_dept;
+  el elev_rec_type;
+  v_flag BOOLEAN;
+BEGIN
+  OPEN rc FOR
+    SELECT grupe_id_grupa, id_elev
+    FROM elevi;
+  LOOP
+    FETCH rc INTO el;
+    verifica_daca_incape_elev_in_grupa_trigger(el.p_id_grupa, v_flag);
+    IF v_flag = true then
+        RAISE ex_capacitate_sala_depasita;
+    END IF;
+  EXIT WHEN rc%NOTFOUND;
+  END LOOP;
+
+EXCEPTION
+  WHEN ex_capacitate_sala_depasita THEN 
+    RAISE_APPLICATION_ERROR(-20004, 'Nu este loc in sala asignata grupei pentru elev');
+  WHEN OTHERS THEN
+    dbms_output.put_line('Error: ' || SQLERRM);
+END;]]></body>
+<triggerTime>BEFORE</triggerTime>
+<columns>0AD76AC7-4F14-9D34-916E-6A8758751AE3</columns>
+<owner>A6A6F46F-FC61-FB2E-FC75-5FC0F42703D3</owner>
+<scope>FOR EACH STATEMENT</scope>
+<table>2BEA2245-8C6A-7A42-FE6F-A875A0A047AB</table>
+</TriggerOraclev10g>

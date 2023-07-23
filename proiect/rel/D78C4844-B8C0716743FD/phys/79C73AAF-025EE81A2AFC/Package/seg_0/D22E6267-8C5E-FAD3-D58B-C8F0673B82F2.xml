@@ -1,0 +1,120 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<PackageOracle class="oracle.dbtools.crest.model.design.storage.oracle.PackageOracle" name="TESTE_TRANZACTII" directorySegmentName="seg_0" id="D22E6267-8C5E-FAD3-D58B-C8F0673B82F2">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PBD_STUD_121</sourceObjSchema>
+<sourceObjName>TESTE_TRANZACTII</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:38 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<owner><![CDATA[A6A6F46F-FC61-FB2E-FC75-5FC0F42703D3]]></owner>
+<source>CREATE OR REPLACE PACKAGE PBD_STUD_121.TESTE_TRANZACTII IS
+    PROCEDURE testeaza_tranzactie_avansare_elev_reusita_cu_succes;
+    PROCEDURE revino_la_datele_de_dinainte_de_tranzactie_pentru_retestare;
+    PROCEDURE testeaza_tranzactie_cu_elev_deja_profesionist;
+    PROCEDURE testeaza_avansare_elev_care_nu_mai_are_loc_in_grupa_avansata;
+END;</source>
+<body class="oracle.dbtools.crest.model.design.storage.oracle.PackageBodyOracle" name="TESTE_TRANZACTII" id="D22E6267-8C5E-FAD3-D58B-C8F0673B82F2">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PBD_STUD_121</sourceObjSchema>
+<sourceObjName>TESTE_TRANZACTII</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:38 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<owner><![CDATA[A6A6F46F-FC61-FB2E-FC75-5FC0F42703D3]]></owner>
+<source>CREATE OR REPLACE PACKAGE BODY PBD_STUD_121.TESTE_TRANZACTII IS
+    PROCEDURE testeaza_avansare_elev_care_nu_mai_are_loc_in_grupa_avansata
+    IS
+    BEGIN
+        adaugare.elev_la_spectacol(33, &apos;Dansand printre stele&apos;);
+        adaugare.elev_la_spectacol(33, &apos;Cinderella&apos;);
+
+        dbms_output.put_line(&apos;Elevul inainte de tranzactie : &apos;);
+        vizualizari.afiseaza_elev(33);
+        vizualizari.afiseaza_spectacole_la_care_a_participat_elev(33);
+        vizualizari.afiseaza_spectacole_la_care_a_participat_elev_din_istoric(33);
+
+
+        avansare_elevi.modifica(33);
+
+        dbms_output.put_line(&apos;Elevul dupa tranzactie : &apos;);
+        vizualizari.afiseaza_elev(33);
+        vizualizari.afiseaza_spectacole_la_care_a_participat_elev(33);
+        vizualizari.afiseaza_spectacole_la_care_a_participat_elev_din_istoric(33);
+    EXCEPTION
+         WHEN OTHERS THEN
+                dbms_output.put_line(&apos;Elevul dupa ce a esuat tranzactia&apos;);
+                vizualizari.afiseaza_elev(34);
+                vizualizari.afiseaza_spectacole_la_care_a_participat_elev(34);
+                vizualizari.afiseaza_spectacole_la_care_a_participat_elev_din_istoric(34);
+                dbms_output.put_line(&apos;Error: &apos; || SQLERRM);
+    END;
+
+
+    PROCEDURE testeaza_tranzactie_avansare_elev_reusita_cu_succes
+    IS
+    BEGIN
+        --se avanseaza elevul cu id-ul 34 care e incepator si e in grupa 1
+        --el ar trebui avansat in unele din grupele 3 sau 4 cu statut mediu
+        --dar 3 e plina, asa ca il va adauga in 4
+        --spectacolele lui trebuie scoase din elevi_spectacol si adaugate la istoric 
+        --(trebuie pastrata o evidenta concreta a elevilor care au participat la spectacole dupa schimbarea statutului
+        --in caz ca se va tine cont de spectacolele la care au participat la avansarea lor)
+
+        adaugare.elev_la_spectacol(34, &apos;Dansand printre stele&apos;);
+        adaugare.elev_la_spectacol(34, &apos;Cinderella&apos;);
+
+        dbms_output.put_line(&apos;Elevul inainte de tranzactie : &apos;);
+        vizualizari.afiseaza_elev(34);
+        vizualizari.afiseaza_spectacole_la_care_a_participat_elev(34);
+        vizualizari.afiseaza_spectacole_la_care_a_participat_elev_din_istoric(34);
+
+
+        avansare_elevi.modifica(34);
+
+        dbms_output.put_line(&apos;Elevul dupa tranzactie : &apos;);
+        vizualizari.afiseaza_elev(34);
+        vizualizari.afiseaza_spectacole_la_care_a_participat_elev(34);
+        vizualizari.afiseaza_spectacole_la_care_a_participat_elev_din_istoric(34);
+
+        EXCEPTION
+         WHEN OTHERS THEN
+
+                dbms_output.put_line(&apos;Error: &apos; || SQLERRM);
+    END;
+
+    PROCEDURE revino_la_datele_de_dinainte_de_tranzactie_pentru_retestare
+    IS
+    BEGIN
+        DELETE FROM elevi_spectacol_istoric
+        WHERE id_elev = 34;
+
+        actualizari.modifica_elev_statut_grupa_sala(34,1,&apos;incepator&apos;);
+
+        EXCEPTION
+         WHEN OTHERS THEN
+                dbms_output.put_line(&apos;Error: &apos; || SQLERRM);
+
+    END;
+
+    PROCEDURE testeaza_tranzactie_cu_elev_deja_profesionist
+    IS
+    BEGIN
+        adaugare.elev_la_spectacol(17, &apos;Dansand printre stele&apos;);
+        adaugare.elev_la_spectacol(17, &apos;Cinderella&apos;);
+
+        dbms_output.put_line(&apos;Elevul inainte de tranzactie : &apos;);
+        vizualizari.afiseaza_elev(17);
+        vizualizari.afiseaza_spectacole_la_care_a_participat_elev(17);
+        vizualizari.afiseaza_spectacole_la_care_a_participat_elev_din_istoric(17);
+
+
+        avansare_elevi.modifica(17);
+
+        dbms_output.put_line(&apos;Elevul dupa tranzactie : &apos;);
+        vizualizari.afiseaza_elev(17);
+        vizualizari.afiseaza_spectacole_la_care_a_participat_elev(17);
+        vizualizari.afiseaza_spectacole_la_care_a_participat_elev_din_istoric(17);
+    END;
+END;</source>
+</body>
+</PackageOracle>

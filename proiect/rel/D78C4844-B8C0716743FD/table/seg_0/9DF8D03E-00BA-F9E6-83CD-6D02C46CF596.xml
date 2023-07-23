@@ -1,0 +1,229 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="9DF8D03E-00BA-F9E6-83CD-6D02C46CF596" schemaObject="71F9C55C-7098-D509-D335-FD8BE9A14FEF" name="INSTRUCTORI">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PBD_STUD_121</sourceObjSchema>
+<sourceObjName>INSTRUCTORI</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:34 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID_INSTRUCTOR" id="EFC399CE-8339-66C2-3ACE-9EAE27E411A5">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>INSTRUCTORI</sourceObjSchema>
+<sourceObjName>ID_INSTRUCTOR</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:34 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>6</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,6,0</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="NUME" id="FDD2B7BF-8466-BD5F-BF6E-65318309C8B1">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>INSTRUCTORI</sourceObjSchema>
+<sourceObjName>NUME</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:34 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<constraintName>INSTRUCTORI_NUME2_CK</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>9 CHAR</dataTypeSize>
+<checkConstraint>
+<implementationDef dbType="Generic Constraint" definition="
+       nume not like &apos;%[^A-Z]%&apos;"/>
+<implementationDef dbType="Oracle Database 12cR2" definition="
+       nume not like &apos;%[^A-Z]%&apos;"/>
+</checkConstraint>
+<ownDataTypeParameters>9 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PRENUME" id="54B19ED8-7BC7-83A2-A192-8F05D70EFE09">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>INSTRUCTORI</sourceObjSchema>
+<sourceObjName>PRENUME</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:34 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<constraintName>INSTRUCTORI_PRENUME2_CK</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>9 CHAR</dataTypeSize>
+<checkConstraint>
+<implementationDef dbType="Generic Constraint" definition="
+       prenume not like &apos;%[^A-Z]%&apos;"/>
+<implementationDef dbType="Oracle Database 12cR2" definition="
+       prenume not like &apos;%[^A-Z]%&apos;"/>
+</checkConstraint>
+<ownDataTypeParameters>9 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="STATUT" id="C33E8666-2A22-9390-165A-EF4836CDC9E1">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>INSTRUCTORI</sourceObjSchema>
+<sourceObjName>STATUT</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:34 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<constraintName>STATUT_CHECK_INSTRUCTOR</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>15 CHAR</dataTypeSize>
+<listOfValues>
+<valueDef value="&apos;avansat&apos;" description=""/>
+<valueDef value="&apos;incepator&apos;" description=""/>
+<valueDef value="&apos;mediu&apos;" description=""/>
+<valueDef value="&apos;profesionist&apos;" description=""/>
+</listOfValues>
+<defaultValue>&apos;incepator&apos;</defaultValue>
+<ownDataTypeParameters>15 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="EXPERIENTA" id="910A686B-C889-B515-976F-826239237CA5">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>INSTRUCTORI</sourceObjSchema>
+<sourceObjName>EXPERIENTA</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:34 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<constraintName>EXPERIENTA_INSTRUCTRORI_CHECK</constraintName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>6</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<checkConstraint>
+<implementationDef dbType="Generic Constraint" definition=" experienta &gt; 0 "/>
+<implementationDef dbType="Oracle Database 12cR2" definition=" experienta &gt; 0 "/>
+</checkConstraint>
+<defaultValue>0</defaultValue>
+<ownDataTypeParameters>,6,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="GRUPE_ID_GRUPA" id="BCA75C24-285A-455E-DF0E-E9A66F802D17">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>INSTRUCTORI</sourceObjSchema>
+<sourceObjName>GRUPE_ID_GRUPA</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:34 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>6</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,6,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="A233FDDE-1E69-9DFD-E999-FE8AD8C191F8" referredColumn="EB32960B-AB04-D70F-975E-FA968F7E68C5"/>
+</associations>
+</Column>
+<Column name="GRUPE_SALI_ID_SALA" id="C88C9E89-CBF5-8613-9F64-482EF90D038E">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>INSTRUCTORI</sourceObjSchema>
+<sourceObjName>GRUPE_SALI_ID_SALA</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:34 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>6</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,6,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="A233FDDE-1E69-9DFD-E999-FE8AD8C191F8" referredColumn="453A3EB6-E5E7-9098-A61C-A095B1125510"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="BF0868E6-2FBB-CB87-B7DF-902D182CD8DF" name="INSTRUCTOR_PK">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PBD_STUD_121</sourceObjSchema>
+<sourceObjName>INSTRUCTOR_PK</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:35 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="EFC399CE-8339-66C2-3ACE-9EAE27E411A5"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E3EC37A2-0FE0-85C2-306B-CF95CDDBEFD1" schemaObject="71F9C55C-7098-D509-D335-FD8BE9A14FEF" name="INSTRUCTOR_PK">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PBD_STUD_121</sourceObjSchema>
+<sourceObjName>INSTRUCTOR_PK</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:34 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="EFC399CE-8339-66C2-3ACE-9EAE27E411A5"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="69AC2CFD-5F2C-3888-56DB-43FB11A7C2AF" schemaObject="71F9C55C-7098-D509-D335-FD8BE9A14FEF" name="INSTRUCTOR__IDX">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PBD_STUD_121</sourceObjSchema>
+<sourceObjName>INSTRUCTOR__IDX</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:34 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BCA75C24-285A-455E-DF0E-E9A66F802D17"/>
+<colUsage columnID="C88C9E89-CBF5-8613-9F64-482EF90D038E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="1563580E-089A-0AF9-1858-655B0682328D" name="INSTRUCTORI_GRUPE_FK">
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:37 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BCA75C24-285A-455E-DF0E-E9A66F802D17"/>
+<colUsage columnID="C88C9E89-CBF5-8613-9F64-482EF90D038E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+<tableCheckConstraints itemClass="oracle.dbtools.crest.model.design.constraint.TableLevelConstraint">
+<tableCheckConstraint name="INSTRUCTORI_NUME_CK" directorySegmentName="seg_0" id="1C1255CE-18DF-F221-A723-5668323D6400">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PBD_STUD_121</sourceObjSchema>
+<sourceObjName>INSTRUCTORI_NUME_CK</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:36 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<rule><![CDATA[
+       length(nume) > 1]]></rule>
+</tableCheckConstraint>
+<tableCheckConstraint name="INSTRUCTORI_PRENUME_CK" directorySegmentName="seg_0" id="CE2567F7-21B7-C065-292F-755FFC752699">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PBD_STUD_121</sourceObjSchema>
+<sourceObjName>INSTRUCTORI_PRENUME_CK</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:36 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<rule><![CDATA[
+       length(prenume) > 1]]></rule>
+</tableCheckConstraint>
+</tableCheckConstraints>
+</Table>

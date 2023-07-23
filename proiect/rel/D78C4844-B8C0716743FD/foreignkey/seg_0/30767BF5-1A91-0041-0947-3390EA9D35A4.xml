@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="30767BF5-1A91-0041-0947-3390EA9D35A4" containerWithKeyObject="A6BE744F-36E3-51AC-2B44-0BEBE29375FA" localFKIndex="2B63060A-350A-7695-DB0E-D4299A25A9A9" name="ELEVI_SPECTACOL_SPECTACOLE_FK">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PBD_STUD_121</sourceObjSchema>
+<sourceObjName>ELEVI_SPECTACOL_SPECTACOLE_FK</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:37 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<referredTableLongName>PBD_STUD_121.SPECTACOLE</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>FC4A8BB1-4711-2C10-E780-817AFC74B1FC</referredTableID>
+<keyObject>1A1DE2D6-0697-6E44-924D-9FA3076ADE07</keyObject>
+<referredKeyID>1A1DE2D6-0697-6E44-924D-9FA3076ADE07</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>ID_SPECTACOL</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

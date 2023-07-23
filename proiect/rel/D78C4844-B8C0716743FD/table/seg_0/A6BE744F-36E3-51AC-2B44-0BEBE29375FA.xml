@@ -1,0 +1,143 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="A6BE744F-36E3-51AC-2B44-0BEBE29375FA" schemaObject="71F9C55C-7098-D509-D335-FD8BE9A14FEF" name="ELEVI_SPECTACOL">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PBD_STUD_121</sourceObjSchema>
+<sourceObjName>ELEVI_SPECTACOL</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:34 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ELEVI_ID_ELEV" id="077575E7-3E7A-614B-F247-F31E2F2AEAE6">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>ELEVI_SPECTACOL</sourceObjSchema>
+<sourceObjName>ELEVI_ID_ELEV</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:34 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>6</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,6,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="0966B72F-3BC1-371F-3814-A338E17933FC" referredColumn="5B4236B5-CBF6-FA2F-3D8A-4478BC4AB633"/>
+</associations>
+</Column>
+<Column name="ELEVI_ID_GRUPA" id="0DE5B7A5-368E-C4F8-AFDF-659288360FDF">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>ELEVI_SPECTACOL</sourceObjSchema>
+<sourceObjName>ELEVI_ID_GRUPA</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:34 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>6</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,6,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="0966B72F-3BC1-371F-3814-A338E17933FC" referredColumn="0AD76AC7-4F14-9D34-916E-6A8758751AE3"/>
+</associations>
+</Column>
+<Column name="ELEVI_ID_SALA" id="FE3319C1-FCFF-56D6-EDEF-89E96C171350">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>ELEVI_SPECTACOL</sourceObjSchema>
+<sourceObjName>ELEVI_ID_SALA</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:34 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>6</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,6,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="0966B72F-3BC1-371F-3814-A338E17933FC" referredColumn="0FD330E1-773F-F2BD-3218-384F1CFBC501"/>
+</associations>
+</Column>
+<Column name="SPECTACOLE_ID_SPECTACOL" id="5A36E55E-EF55-B696-11F4-A1F53F2E80B4">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>ELEVI_SPECTACOL</sourceObjSchema>
+<sourceObjName>SPECTACOLE_ID_SPECTACOL</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:34 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>6</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,6,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="30767BF5-1A91-0041-0947-3390EA9D35A4" referredColumn="762F36B4-73A6-2469-D923-0EABC325DE73"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="1672DF81-D4D3-1465-B5CE-8550CD8F5B3E" name="RELATION_4_PK">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PBD_STUD_121</sourceObjSchema>
+<sourceObjName>RELATION_4_PK</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:35 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="077575E7-3E7A-614B-F247-F31E2F2AEAE6"/>
+<colUsage columnID="0DE5B7A5-368E-C4F8-AFDF-659288360FDF"/>
+<colUsage columnID="FE3319C1-FCFF-56D6-EDEF-89E96C171350"/>
+<colUsage columnID="5A36E55E-EF55-B696-11F4-A1F53F2E80B4"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="D35F28FE-09B3-5005-16AA-354DD59CEB36" schemaObject="71F9C55C-7098-D509-D335-FD8BE9A14FEF" name="RELATION_4_PK">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PBD_STUD_121</sourceObjSchema>
+<sourceObjName>RELATION_4_PK</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:34 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="077575E7-3E7A-614B-F247-F31E2F2AEAE6"/>
+<colUsage columnID="0DE5B7A5-368E-C4F8-AFDF-659288360FDF"/>
+<colUsage columnID="FE3319C1-FCFF-56D6-EDEF-89E96C171350"/>
+<colUsage columnID="5A36E55E-EF55-B696-11F4-A1F53F2E80B4"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="700B9CEB-5EB9-220E-F2FC-D238A0FDB2A7" name="ELEVI_SPECTACOL_ELEVI_FK">
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:37 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="077575E7-3E7A-614B-F247-F31E2F2AEAE6"/>
+<colUsage columnID="0DE5B7A5-368E-C4F8-AFDF-659288360FDF"/>
+<colUsage columnID="FE3319C1-FCFF-56D6-EDEF-89E96C171350"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="2B63060A-350A-7695-DB0E-D4299A25A9A9" name="ELEVI_SPECTACOL_SPECTACOLE_FK">
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:37 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5A36E55E-EF55-B696-11F4-A1F53F2E80B4"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

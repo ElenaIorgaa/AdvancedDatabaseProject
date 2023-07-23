@@ -1,0 +1,32 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="ELEVI_SPECTACOL_ISTORIC" directorySegmentName="seg_0" id="4EEE9F8A-3A39-324E-A780-765EAFD54C45">
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:34 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<schemaObject>71F9C55C-7098-D509-D335-FD8BE9A14FEF</schemaObject>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<segment>F5887FAD-BB73-C01C-477D-359A1A1EE46C</segment>
+<tableSpace>8A769E3D-8718-3942-B71E-83C2D21EF730</tableSpace>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<inMemory>NO</inMemory>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="ID_GRUPA" id="409C3151-DFC5-327C-70BD-54EE17E06781">
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:34 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ID_SPECTACOL" id="6EA32D1C-3AF2-8D87-A382-E95B307A1162">
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:34 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ID_ELEV" id="DD332E53-0C93-0578-A553-9AE6D711C094">
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:34 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+</TableProxyOraclev12c>

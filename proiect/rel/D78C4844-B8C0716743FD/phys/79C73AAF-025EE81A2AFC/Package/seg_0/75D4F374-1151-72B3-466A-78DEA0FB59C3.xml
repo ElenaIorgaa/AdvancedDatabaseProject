@@ -1,0 +1,167 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<PackageOracle class="oracle.dbtools.crest.model.design.storage.oracle.PackageOracle" name="TESTE_STERGERI" directorySegmentName="seg_0" id="75D4F374-1151-72B3-466A-78DEA0FB59C3">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PBD_STUD_121</sourceObjSchema>
+<sourceObjName>TESTE_STERGERI</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:38 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<owner><![CDATA[A6A6F46F-FC61-FB2E-FC75-5FC0F42703D3]]></owner>
+<source>CREATE OR REPLACE PACKAGE PBD_STUD_121.TESTE_STERGERI IS
+    PROCEDURE testeaza_stergere_elev_inexistent;
+    PROCEDURE testeaza_stergere_elev_care_are_spectacole;
+    PROCEDURE testeaza_stergere_elev_spectacol;
+    PROCEDURE testeaza_stergere_spectacol;
+    PROCEDURE testeaza_stergere_spectacol_inexistent;
+    PROCEDURE testeaza_stergere_instructor_inexistent;
+    PROCEDURE testeaza_stergere_pianist_inexistent;
+    PROCEDURE testeaza_stergere_instructor;
+    PROCEDURE testeaza_stergere_pianist; 
+    PROCEDURE testeaza_adaugare_spectacol_data_in_viitor;
+END;</source>
+<body class="oracle.dbtools.crest.model.design.storage.oracle.PackageBodyOracle" name="TESTE_STERGERI" id="75D4F374-1151-72B3-466A-78DEA0FB59C3">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PBD_STUD_121</sourceObjSchema>
+<sourceObjName>TESTE_STERGERI</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:38 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<owner><![CDATA[A6A6F46F-FC61-FB2E-FC75-5FC0F42703D3]]></owner>
+<source>CREATE OR REPLACE PACKAGE BODY PBD_STUD_121.TESTE_STERGERI IS
+    PROCEDURE testeaza_adaugare_spectacol_data_in_viitor
+    IS
+    BEGIN
+        adaugare.nou_spectacol(&apos;numerge&apos;,10,&apos;2022-2-2&apos;);
+        EXCEPTION
+         WHEN OTHERS THEN
+                dbms_output.put_line(&apos;Error: &apos; || SQLERRM);
+    END;
+
+    PROCEDURE testeaza_stergere_pianist
+    IS
+        v_id_instructor pianisti.id_pianist%TYPE;
+
+    BEGIN
+
+
+        adaugare.nou_pianist(&apos;test&apos;,&apos;test&apos;,&apos;incepator&apos;,11,13);
+
+        SELECT max(id_pianist)
+        INTO v_id_instructor
+        FROM pianisti;
+
+        stergeri.pianist(v_id_instructor);
+
+        EXCEPTION
+         WHEN OTHERS THEN
+                dbms_output.put_line(&apos;Error: &apos; || SQLERRM);
+    END;
+
+
+    PROCEDURE testeaza_stergere_instructor
+    IS
+        v_id_instructor instructori.id_instructor%TYPE;
+    BEGIN
+        adaugare.nou_instructor(&apos;test&apos;,&apos;test&apos;,&apos;incepator&apos;,11,13);
+
+        SELECT max(id_instructor)
+        INTO v_id_instructor
+        FROM instructori;
+
+        stergeri.instructor(v_id_instructor);
+
+        EXCEPTION
+         WHEN OTHERS THEN
+                dbms_output.put_line(&apos;Error: &apos; || SQLERRM);
+    END;
+
+    PROCEDURE testeaza_stergere_instructor_inexistent
+    IS
+    BEGIN
+        stergeri.instructor(9999);
+         EXCEPTION
+         WHEN OTHERS THEN
+                dbms_output.put_line(&apos;Error: &apos; || SQLERRM);
+    END;
+
+    PROCEDURE testeaza_stergere_pianist_inexistent
+    IS
+    BEGIN
+        stergeri.pianist(9999);
+         EXCEPTION
+         WHEN OTHERS THEN
+                dbms_output.put_line(&apos;Error: &apos; || SQLERRM);
+    END;
+
+    PROCEDURE testeaza_stergere_spectacol_inexistent
+    IS
+    BEGIN
+        stergeri.spectacol(&apos;NUEXISTA&apos;);
+        EXCEPTION
+         WHEN OTHERS THEN
+                dbms_output.put_line(&apos;Error: &apos; || SQLERRM);
+    END;
+
+    PROCEDURE testeaza_stergere_spectacol
+    IS
+    BEGIN   
+        adaugare.nou_spectacol(&apos;NouSpect&apos;,11,&apos;2023-9-23&apos;);
+        stergeri.spectacol(&apos;NouSpect&apos;);
+        EXCEPTION
+         WHEN OTHERS THEN
+                dbms_output.put_line(&apos;Error: &apos; || SQLERRM);
+    END;
+
+    PROCEDURE testeaza_stergere_elev_spectacol
+    IS
+    BEGIN   
+        adaugare.elev_la_spectacol(10,&apos;Nopti albe&apos;);
+        dbms_output.put_line(&apos;Am inserat elevul la Nopti albe&apos;);
+        stergeri.elev_spectacol(10, &apos;Nopti albe&apos;);
+        dbms_output.put_line(&apos;Apoi l-am sters&apos;);
+    END;
+
+    PROCEDURE testeaza_stergere_elev_inexistent
+    IS
+    BEGIN
+        stergeri.elev(9999);
+        EXCEPTION
+         WHEN OTHERS THEN
+                dbms_output.put_line(&apos;Error: &apos; || SQLERRM);
+    END;
+
+    PROCEDURE testeaza_stergere_elev_care_are_spectacole
+    IS
+        v_elev_nou_inserat elevi%ROWTYPE;
+        v_elev_la_spectacol elevi_spectacol%ROWTYPE;
+    BEGIN
+        adaugare.nou_elev(&apos;profesionist&apos;,&apos;test&apos;,&apos;test&apos;,8);
+
+        SELECT *
+        INTO v_elev_nou_inserat
+        FROM elevi
+        WHERE nume = &apos;test&apos;
+        AND prenume = &apos;test&apos;
+        AND varsta = 8
+        AND statut = &apos;profesionist&apos;;
+
+        dbms_output.put_line(&apos;Am inserat elevul nou care va avea id-ul &apos;||v_elev_nou_inserat.id_elev);
+
+        adaugare.elev_la_spectacol(v_elev_nou_inserat.id_elev,&apos;Nopti albe&apos;);
+
+        SELECT *
+        INTO v_elev_la_spectacol
+        FROM elevi_spectacol
+        WHERE elevi_id_elev = v_elev_nou_inserat.id_elev
+        AND spectacole_id_spectacol = (SELECT id_spectacol FROM spectacole WHERE nume_spectacol = &apos;Nopti albe&apos;);
+
+        dbms_output.put_line(&apos;Am inserat la spectacolul Nopti albe&apos;);
+
+        stergeri.elev(v_elev_nou_inserat.id_elev);
+        EXCEPTION
+         WHEN OTHERS THEN
+                dbms_output.put_line(&apos;Error: &apos; || SQLERRM);
+    END;
+END;</source>
+</body>
+</PackageOracle>

@@ -1,0 +1,112 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="B0BCE967-7825-E909-74C3-DAA997C34581" schemaObject="71F9C55C-7098-D509-D335-FD8BE9A14FEF" name="GRUPE">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PBD_STUD_121</sourceObjSchema>
+<sourceObjName>GRUPE</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:34 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID_GRUPA" id="EB32960B-AB04-D70F-975E-FA968F7E68C5">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>GRUPE</sourceObjSchema>
+<sourceObjName>ID_GRUPA</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:34 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>6</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,6,2</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="STATUT" id="87731CA5-847E-E4C9-4746-F5F68FF47189">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>GRUPE</sourceObjSchema>
+<sourceObjName>STATUT</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:34 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<constraintName>STATUT_GRUPA_CHECK</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>15 CHAR</dataTypeSize>
+<listOfValues>
+<valueDef value="&apos;avansat&apos;" description=""/>
+<valueDef value="&apos;incepator&apos;" description=""/>
+<valueDef value="&apos;mediu&apos;" description=""/>
+<valueDef value="&apos;profesionist&apos;" description=""/>
+</listOfValues>
+<defaultValue>&apos;incepatori&apos;</defaultValue>
+<ownDataTypeParameters>15 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="SALI_ID_SALA" id="453A3EB6-E5E7-9098-A61C-A095B1125510">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>GRUPE</sourceObjSchema>
+<sourceObjName>SALI_ID_SALA</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:34 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>6</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,6,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="1970CB93-97BB-EB93-C316-98D755A53ACC" referredColumn="000FC902-994F-0D33-6BFF-3CD298BC064A"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="94F2146D-8282-1F11-2795-4213BA6D8ECB" name="GRUPE_PK">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PBD_STUD_121</sourceObjSchema>
+<sourceObjName>GRUPE_PK</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:35 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="EB32960B-AB04-D70F-975E-FA968F7E68C5"/>
+<colUsage columnID="453A3EB6-E5E7-9098-A61C-A095B1125510"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="65F05883-7678-4408-B3CF-34B63C115AD6" schemaObject="71F9C55C-7098-D509-D335-FD8BE9A14FEF" name="GRUPE_PK">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PBD_STUD_121</sourceObjSchema>
+<sourceObjName>GRUPE_PK</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:34 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="EB32960B-AB04-D70F-975E-FA968F7E68C5"/>
+<colUsage columnID="453A3EB6-E5E7-9098-A61C-A095B1125510"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="3F6F791D-784D-960F-6FB5-F8C2EAA84F4C" name="GRUPE_SALI_FK">
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:37 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="453A3EB6-E5E7-9098-A61C-A095B1125510"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

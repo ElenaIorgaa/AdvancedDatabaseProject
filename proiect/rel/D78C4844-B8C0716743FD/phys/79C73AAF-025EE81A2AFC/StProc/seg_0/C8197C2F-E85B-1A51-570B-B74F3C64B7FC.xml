@@ -1,0 +1,69 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<StoredProcedureOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.StoredProcedureOraclev10g" name="VERIFICA_DACA_NU_A_FOST_ATINSA_CAPACITATEA" directorySegmentName="seg_0" id="C8197C2F-E85B-1A51-570B-B74F3C64B7FC">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PBD_STUD_121</sourceObjSchema>
+<sourceObjName>VERIFICA_DACA_NU_A_FOST_ATINSA_CAPACITATEA</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:38 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<owner><![CDATA[A6A6F46F-FC61-FB2E-FC75-5FC0F42703D3]]></owner>
+<source>CREATE OR REPLACE PROCEDURE PBD_STUD_121.VERIFICA_DACA_NU_A_FOST_ATINSA_CAPACITATEA
+(v_id_spectacol IN elevi_spectacol.spectacole_id_spectacol%TYPE,
+v_flag OUT BOOLEAN)
+IS
+    v_nr_elevi NUMBER := 0;
+    v_capacitate spectacole.capacitate%TYPE;
+
+    TYPE typ_spect_rec IS RECORD (
+       capacitate spectacole.capacitate%TYPE
+    );
+    TYPE typ_spect IS REF CURSOR RETURN typ_spect_rec;
+    capac typ_spect;
+
+    TYPE typ_nr_rec IS RECORD (
+       nr_elevi_i NUMERIC
+    );
+    TYPE typ_nr IS REF CURSOR RETURN typ_nr_rec;
+    nr_elevi typ_nr;
+
+    v_nr_elevi_istoric NUMBER;
+
+    excSpectacol exception;
+
+BEGIN
+    dbms_output.put_line(v_id_spectacol);
+    OPEN capac FOR
+            SELECT capacitate
+            FROM spectacole
+            WHERE id_spectacol = v_id_spectacol;
+    FETCH capac INTO v_capacitate;
+    dbms_output.put_line(&apos;v_capacitate gasita este &apos; || v_capacitate);
+    IF capac%ROWCOUNT = 0 THEN
+        RAISE excSpectacol;
+    END IF; 
+    SELECT count(*)
+    INTO v_nr_elevi_istoric
+    FROM elevi_spectacol_istoric
+    WHERE id_spectacol = v_id_spectacol;
+    OPEN nr_elevi FOR
+            SELECT count(*)
+            FROM elevi_spectacol
+            WHERE spectacole_id_spectacol = v_id_spectacol;
+
+    FETCH nr_elevi INTO v_nr_elevi;
+    dbms_output.put_line(&apos;S-au gasit &apos; || v_nr_elevi);
+    v_nr_elevi := v_nr_elevi + v_nr_elevi_istoric;
+    if v_nr_elevi &gt;= v_capacitate then
+        v_flag := false;
+    ELSE
+        v_flag := true;
+    END IF;
+
+    EXCEPTION
+    WHEN excSpectacol THEN
+        RAISE_APPLICATION_ERROR(-20002, &apos;Nu s-a gasit spectacolul pe care il cautati&apos;);
+    WHEN OTHERS THEN
+        dbms_output.put_line(&apos;Error: &apos; || SQLERRM);
+
+END;</source>
+</StoredProcedureOraclev10g>

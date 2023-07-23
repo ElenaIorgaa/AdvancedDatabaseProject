@@ -1,0 +1,229 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="09F73DEE-348D-8C50-8A8D-5D4111C87101" schemaObject="71F9C55C-7098-D509-D335-FD8BE9A14FEF" name="PIANISTI">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PBD_STUD_121</sourceObjSchema>
+<sourceObjName>PIANISTI</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:34 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID_PIANIST" id="47227304-A24A-C992-2E31-CE87073B9C74">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PIANISTI</sourceObjSchema>
+<sourceObjName>ID_PIANIST</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:34 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>6</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,6,0</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="NUME" id="5EE6B37F-F1E2-598B-138A-C75E42B1AC97">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PIANISTI</sourceObjSchema>
+<sourceObjName>NUME</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:34 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<constraintName>PIANISTI_NUME2_CK</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>9 CHAR</dataTypeSize>
+<checkConstraint>
+<implementationDef dbType="Generic Constraint" definition="
+       nume not like &apos;%[^A-Z]%&apos;"/>
+<implementationDef dbType="Oracle Database 12cR2" definition="
+       nume not like &apos;%[^A-Z]%&apos;"/>
+</checkConstraint>
+<ownDataTypeParameters>9 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PRENUME" id="C7708540-DED4-C29E-EECF-A9AFFB8B65FB">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PIANISTI</sourceObjSchema>
+<sourceObjName>PRENUME</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:34 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<constraintName>PIANISTI_PRENUME2_CK</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>9 CHAR</dataTypeSize>
+<checkConstraint>
+<implementationDef dbType="Generic Constraint" definition="
+       prenume not like &apos;%[^A-Z]%&apos;"/>
+<implementationDef dbType="Oracle Database 12cR2" definition="
+       prenume not like &apos;%[^A-Z]%&apos;"/>
+</checkConstraint>
+<ownDataTypeParameters>9 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="STATUT" id="7F1E14F0-81BC-0B80-58F4-149F4C4B4526">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PIANISTI</sourceObjSchema>
+<sourceObjName>STATUT</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:34 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<constraintName>STATUT_PIANIST_CHECK</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>15 CHAR</dataTypeSize>
+<listOfValues>
+<valueDef value="&apos;avansat&apos;" description=""/>
+<valueDef value="&apos;incepator&apos;" description=""/>
+<valueDef value="&apos;mediu&apos;" description=""/>
+<valueDef value="&apos;profesionist&apos;" description=""/>
+</listOfValues>
+<defaultValue>&apos;incepator&apos;</defaultValue>
+<ownDataTypeParameters>15 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="EXPERIENTA" id="20EC25A4-95C3-9735-F48E-95F793AA0595">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PIANISTI</sourceObjSchema>
+<sourceObjName>EXPERIENTA</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:34 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<constraintName>EXPERIENTA_PIANISTI_CHECK</constraintName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>6</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<checkConstraint>
+<implementationDef dbType="Generic Constraint" definition=" experienta &gt; 0 "/>
+<implementationDef dbType="Oracle Database 12cR2" definition=" experienta &gt; 0 "/>
+</checkConstraint>
+<defaultValue>0</defaultValue>
+<ownDataTypeParameters>,6,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="GRUPE_ID_GRUPA" id="46EDBFB5-E772-A135-4008-D36A32211B49">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PIANISTI</sourceObjSchema>
+<sourceObjName>GRUPE_ID_GRUPA</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:34 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>6</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,6,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="F467E311-9959-316D-0C9F-EF67780BABBF" referredColumn="EB32960B-AB04-D70F-975E-FA968F7E68C5"/>
+</associations>
+</Column>
+<Column name="GRUPE_SALI_ID_SALA" id="D7A047BD-85DD-0549-22DB-6B4F5B5A0FF0">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PIANISTI</sourceObjSchema>
+<sourceObjName>GRUPE_SALI_ID_SALA</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:34 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>6</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,6,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="F467E311-9959-316D-0C9F-EF67780BABBF" referredColumn="453A3EB6-E5E7-9098-A61C-A095B1125510"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="B9CFC93A-94F3-861C-4EA2-3CA2E6450406" name="PIANIST_PK">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PBD_STUD_121</sourceObjSchema>
+<sourceObjName>PIANIST_PK</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:35 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="47227304-A24A-C992-2E31-CE87073B9C74"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A3E1ECF0-5226-57C1-A815-EEEF438B926B" schemaObject="71F9C55C-7098-D509-D335-FD8BE9A14FEF" name="PIANIST_PK">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PBD_STUD_121</sourceObjSchema>
+<sourceObjName>PIANIST_PK</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:34 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="47227304-A24A-C992-2E31-CE87073B9C74"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C54A4EF0-0BC6-0D14-8028-39536D853B0B" schemaObject="71F9C55C-7098-D509-D335-FD8BE9A14FEF" name="PIANIST__IDX">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PBD_STUD_121</sourceObjSchema>
+<sourceObjName>PIANIST__IDX</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:34 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="46EDBFB5-E772-A135-4008-D36A32211B49"/>
+<colUsage columnID="D7A047BD-85DD-0549-22DB-6B4F5B5A0FF0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="710B33A5-F738-8689-EDFE-3A5E6CDDEF57" name="PIANISTI_GRUPE_FK">
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:37 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="46EDBFB5-E772-A135-4008-D36A32211B49"/>
+<colUsage columnID="D7A047BD-85DD-0549-22DB-6B4F5B5A0FF0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+<tableCheckConstraints itemClass="oracle.dbtools.crest.model.design.constraint.TableLevelConstraint">
+<tableCheckConstraint name="PIANISTI_NUME_CK" directorySegmentName="seg_0" id="B25807CF-2DD3-120D-199E-BF5E7E2BF8F0">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PBD_STUD_121</sourceObjSchema>
+<sourceObjName>PIANISTI_NUME_CK</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:36 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<rule><![CDATA[
+       length(nume) > 1]]></rule>
+</tableCheckConstraint>
+<tableCheckConstraint name="PIANISTI_PRENUME_CK" directorySegmentName="seg_0" id="81835882-8C0B-37C1-317B-7C525088EC21">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PBD_STUD_121</sourceObjSchema>
+<sourceObjName>PIANISTI_PRENUME_CK</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:36 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<rule><![CDATA[
+       length(prenume) > 1]]></rule>
+</tableCheckConstraint>
+</tableCheckConstraints>
+</Table>

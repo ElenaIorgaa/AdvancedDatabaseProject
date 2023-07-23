@@ -1,0 +1,9 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<UserOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UserOraclev10g" name="PBD_STUD_121" directorySegmentName="seg_0" id="A6A6F46F-FC61-FB2E-FC75-5FC0F42703D3">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjName>PBD_STUD_121</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:31 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<schemaObject>71F9C55C-7098-D509-D335-FD8BE9A14FEF</schemaObject>
+</UserOraclev10g>

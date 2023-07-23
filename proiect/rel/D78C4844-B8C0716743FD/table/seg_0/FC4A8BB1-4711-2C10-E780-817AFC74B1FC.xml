@@ -1,0 +1,138 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="FC4A8BB1-4711-2C10-E780-817AFC74B1FC" schemaObject="71F9C55C-7098-D509-D335-FD8BE9A14FEF" name="SPECTACOLE">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PBD_STUD_121</sourceObjSchema>
+<sourceObjName>SPECTACOLE</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:34 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID_SPECTACOL" id="762F36B4-73A6-2469-D923-0EABC325DE73">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>SPECTACOLE</sourceObjSchema>
+<sourceObjName>ID_SPECTACOL</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:34 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>6</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,6,2</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="NUME_SPECTACOL" id="1C8C3073-5E79-92F5-15D3-571D2B4B4515">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>SPECTACOLE</sourceObjSchema>
+<sourceObjName>NUME_SPECTACOL</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:34 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50 CHAR</dataTypeSize>
+<ownDataTypeParameters>50 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CAPACITATE" id="29FC7B8D-A257-9CBF-08B0-447B3F6A4AA9">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>SPECTACOLE</sourceObjSchema>
+<sourceObjName>CAPACITATE</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:34 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<constraintName>CAPACITATE_SPECTACOL_CHECK</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>6</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<defaultValue>0</defaultValue>
+<ownDataTypeParameters>,6,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<endValue>10</endValue>
+</rangeDef>
+</listOfRanges>
+</Column>
+<Column name="DATA_SPECTACOL" id="5332B52D-2909-53C5-F17E-A0F53106F930">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>SPECTACOLE</sourceObjSchema>
+<sourceObjName>DATA_SPECTACOL</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:34 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<defaultValue>sysdate</defaultValue>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="1A1DE2D6-0697-6E44-924D-9FA3076ADE07" name="SPECTACOLE_PK">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PBD_STUD_121</sourceObjSchema>
+<sourceObjName>SPECTACOLE_PK</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:35 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="762F36B4-73A6-2469-D923-0EABC325DE73"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B4B94588-228A-1C69-8B01-1C01873C62A3" name="SPECTACOLE_NUME_SPECTACOL_UN">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PBD_STUD_121</sourceObjSchema>
+<sourceObjName>SPECTACOLE_NUME_SPECTACOL_UN</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:35 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="1C8C3073-5E79-92F5-15D3-571D2B4B4515"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="D2256E30-9CF7-A992-2D28-16223DD57539" schemaObject="71F9C55C-7098-D509-D335-FD8BE9A14FEF" name="SPECTACOLE_NUME_SPECTACOL_UN">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PBD_STUD_121</sourceObjSchema>
+<sourceObjName>SPECTACOLE_NUME_SPECTACOL_UN</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:34 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="1C8C3073-5E79-92F5-15D3-571D2B4B4515"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="96F8D737-B1AA-B88E-1C2A-4A37DFAC26B9" schemaObject="71F9C55C-7098-D509-D335-FD8BE9A14FEF" name="SPECTACOLE_PK">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PBD_STUD_121</sourceObjSchema>
+<sourceObjName>SPECTACOLE_PK</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:34 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="762F36B4-73A6-2469-D923-0EABC325DE73"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

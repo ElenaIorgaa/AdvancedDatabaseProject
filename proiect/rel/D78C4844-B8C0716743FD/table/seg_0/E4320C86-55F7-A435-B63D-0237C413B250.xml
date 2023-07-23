@@ -1,0 +1,103 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="E4320C86-55F7-A435-B63D-0237C413B250" schemaObject="71F9C55C-7098-D509-D335-FD8BE9A14FEF" name="SALI">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PBD_STUD_121</sourceObjSchema>
+<sourceObjName>SALI</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:34 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID_SALA" id="000FC902-994F-0D33-6BFF-3CD298BC064A">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>SALI</sourceObjSchema>
+<sourceObjName>ID_SALA</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:34 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>6</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,6,2</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementMaxValue>10</autoIncrementMaxValue>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DIMENSIUNE" id="18D89CB7-3317-2864-1B6D-0BF0BDFC1AFC">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>SALI</sourceObjSchema>
+<sourceObjName>DIMENSIUNE</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:34 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<constraintName>DIMENSIUNE_SALA_CHECK</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>6</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<checkConstraint>
+<implementationDef dbType="Generic Constraint" definition=" dimensiune &gt; 10 "/>
+<implementationDef dbType="Oracle Database 12cR2" definition=" dimensiune &gt; 10 "/>
+</checkConstraint>
+<ownDataTypeParameters>,6,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CAPACITATE" id="03E77524-29F5-6024-6BC8-39401A0690CC">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>SALI</sourceObjSchema>
+<sourceObjName>CAPACITATE</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:34 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<constraintName>CHECK_CAPACITATE</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>6</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,6,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<endValue>10</endValue>
+</rangeDef>
+</listOfRanges>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="DE9DA813-95F3-EE02-D1A9-31F1DF86DB1C" name="SALI_PK">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PBD_STUD_121</sourceObjSchema>
+<sourceObjName>SALI_PK</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:35 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="000FC902-994F-0D33-6BFF-3CD298BC064A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="5F6595FD-97EB-908E-AE77-8291FFE2253A" schemaObject="71F9C55C-7098-D509-D335-FD8BE9A14FEF" name="SALI_PK">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PBD_STUD_121</sourceObjSchema>
+<sourceObjName>SALI_PK</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:34 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="000FC902-994F-0D33-6BFF-3CD298BC064A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,24 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="ACTUALIZARE_EXPERIENTA_INSTRUCTORI" directorySegmentName="seg_0" id="06B25981-579A-AC47-8CC1-F5C527810BE7">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PBD_STUD_121</sourceObjSchema>
+<sourceObjName>ACTUALIZARE_EXPERIENTA_INSTRUCTORI</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:36 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<actions>UPDATE</actions>
+<body><![CDATA[DECLARE
+    experienta_exceptie EXCEPTION;
+BEGIN   
+    IF :new.experienta <= :old.experienta THEN
+        RAISE experienta_exceptie;
+    END IF;
+    EXCEPTION
+        WHEN experienta_exceptie THEN
+            RAISE_APPLICATION_ERROR(-20033, 'Experienta invalida');
+END;]]></body>
+<triggerTime>BEFORE</triggerTime>
+<columns>910A686B-C889-B515-976F-826239237CA5</columns>
+<owner>A6A6F46F-FC61-FB2E-FC75-5FC0F42703D3</owner>
+<table>9DF8D03E-00BA-F9E6-83CD-6D02C46CF596</table>
+</TriggerOraclev10g>

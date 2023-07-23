@@ -1,0 +1,28 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<StoredProcedureOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.StoredProcedureOraclev10g" name="ADD_ELEV_TO_GRUPA" directorySegmentName="seg_0" id="11E8D687-3B61-01C4-5B20-0B36161E55A3">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PBD_STUD_121</sourceObjSchema>
+<sourceObjName>ADD_ELEV_TO_GRUPA</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:37 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<owner><![CDATA[A6A6F46F-FC61-FB2E-FC75-5FC0F42703D3]]></owner>
+<source>CREATE OR REPLACE PROCEDURE PBD_STUD_121.ADD_ELEV_TO_GRUPA
+(p_statut IN elevi.statut%TYPE,
+p_nume IN elevi.nume%TYPE,
+p_prenume IN elevi.prenume%TYPE,
+p_varsta IN elevi.varsta%TYPE,
+p_id_grupa IN elevi.grupe_id_grupa%TYPE)
+IS
+    v_id_sala sali.id_sala%TYPE;
+BEGIN
+    SELECT sali_id_sala
+    INTO v_id_sala
+    FROM grupe
+    WHERE id_grupa = p_id_grupa;
+
+    INSERT INTO elevi(statut, nume, prenume, varsta, grupe_id_grupa, grupe_sali_id_sala)
+    VALUES (p_statut, p_nume, p_prenume, p_varsta, p_id_grupa, v_id_sala);
+
+END;</source>
+</StoredProcedureOraclev10g>

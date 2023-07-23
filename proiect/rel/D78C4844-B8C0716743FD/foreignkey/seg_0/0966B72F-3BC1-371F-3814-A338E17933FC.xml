@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="0966B72F-3BC1-371F-3814-A338E17933FC" containerWithKeyObject="A6BE744F-36E3-51AC-2B44-0BEBE29375FA" localFKIndex="700B9CEB-5EB9-220E-F2FC-D238A0FDB2A7" name="ELEVI_SPECTACOL_ELEVI_FK">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PBD_STUD_121</sourceObjSchema>
+<sourceObjName>ELEVI_SPECTACOL_ELEVI_FK</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:37 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<referredTableLongName>PBD_STUD_121.ELEVI</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>2BEA2245-8C6A-7A42-FE6F-A875A0A047AB</referredTableID>
+<keyObject>29871475-B194-C4FD-1820-875D22CC3711</keyObject>
+<referredKeyID>29871475-B194-C4FD-1820-875D22CC3711</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>ID_ELEV,GRUPE_ID_GRUPA,GRUPE_SALI_ID_SALA</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

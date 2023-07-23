@@ -1,0 +1,56 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="SALI" directorySegmentName="seg_0" id="E4320C86-55F7-A435-B63D-0237C413B250">
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:34 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<schemaObject>71F9C55C-7098-D509-D335-FD8BE9A14FEF</schemaObject>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<segment>F5887FAD-BB73-C01C-477D-359A1A1EE46C</segment>
+<tableSpace>8A769E3D-8718-3942-B71E-83C2D21EF730</tableSpace>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<inMemory>NO</inMemory>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="ID_SALA" id="000FC902-994F-0D33-6BFF-3CD298BC064A">
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:34 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<autoIncrementDDL>IDENTITY_CLAUSE</autoIncrementDDL>
+</ColumnProxy>
+<ColumnProxy name="CAPACITATE" id="03E77524-29F5-6024-6BC8-39401A0690CC">
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:34 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="DIMENSIUNE" id="18D89CB7-3317-2864-1B6D-0BF0BDFC1AFC">
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:34 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<indexProxies>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="SALI_PK" id="5F6595FD-97EB-908E-AE77-8291FFE2253A">
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:34 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<schemaObject>71F9C55C-7098-D509-D335-FD8BE9A14FEF</schemaObject>
+<segment>78AB6B69-8D34-DA0E-20FB-57A08211E3D0</segment>
+<tableSpace>8A769E3D-8718-3942-B71E-83C2D21EF730</tableSpace>
+</IndexProxy>
+</indexProxies>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="SALI_PK" id="DE9DA813-95F3-EE02-D1A9-31F1DF86DB1C">
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:35 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<segment>78AB6B69-8D34-DA0E-20FB-57A08211E3D0</segment>
+<tableSpace>8A769E3D-8718-3942-B71E-83C2D21EF730</tableSpace>
+<existingIndex>5F6595FD-97EB-908E-AE77-8291FFE2253A</existingIndex>
+<indexSegment>78AB6B69-8D34-DA0E-20FB-57A08211E3D0</indexSegment>
+<indexSort>SORTED</indexSort>
+<usingIndex>BY INDEX NAME</usingIndex>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev12c>

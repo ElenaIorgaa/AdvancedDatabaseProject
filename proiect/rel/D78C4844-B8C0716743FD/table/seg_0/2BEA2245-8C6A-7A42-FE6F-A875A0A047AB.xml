@@ -1,0 +1,219 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="2BEA2245-8C6A-7A42-FE6F-A875A0A047AB" schemaObject="71F9C55C-7098-D509-D335-FD8BE9A14FEF" name="ELEVI">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PBD_STUD_121</sourceObjSchema>
+<sourceObjName>ELEVI</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:34 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID_ELEV" id="5B4236B5-CBF6-FA2F-3D8A-4478BC4AB633">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>ELEVI</sourceObjSchema>
+<sourceObjName>ID_ELEV</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:34 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>6</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,6,2</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="STATUT" id="FAFF6957-8D26-AA17-4701-E0D50499C0CA">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>ELEVI</sourceObjSchema>
+<sourceObjName>STATUT</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:34 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<constraintName>STATUT_ELEV_CHECK</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>15 CHAR</dataTypeSize>
+<listOfValues>
+<valueDef value="&apos;avansat&apos;" description=""/>
+<valueDef value="&apos;incepator&apos;" description=""/>
+<valueDef value="&apos;mediu&apos;" description=""/>
+<valueDef value="&apos;profesionist&apos;" description=""/>
+</listOfValues>
+<defaultValue>&apos;incepator&apos;</defaultValue>
+<ownDataTypeParameters>15 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="NUME" id="1B157E62-DA60-8E78-17F8-5A5977F6FA47">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>ELEVI</sourceObjSchema>
+<sourceObjName>NUME</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:34 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<constraintName>ELEVI_NUME2_CK</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>9 CHAR</dataTypeSize>
+<checkConstraint>
+<implementationDef dbType="Generic Constraint" definition="
+       nume not like &apos;%[^A-Z]%&apos;"/>
+<implementationDef dbType="Oracle Database 12cR2" definition="
+       nume not like &apos;%[^A-Z]%&apos;"/>
+</checkConstraint>
+<ownDataTypeParameters>9 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PRENUME" id="038F14AB-9567-4D0C-50B7-6585B79C7A95">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>ELEVI</sourceObjSchema>
+<sourceObjName>PRENUME</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:34 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<constraintName>ELEVI_PRENUME2_CK</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>9 CHAR</dataTypeSize>
+<checkConstraint>
+<implementationDef dbType="Generic Constraint" definition="
+       prenume not like &apos;%[^A-Z]%&apos;"/>
+<implementationDef dbType="Oracle Database 12cR2" definition="
+       prenume not like &apos;%[^A-Z]%&apos;"/>
+</checkConstraint>
+<ownDataTypeParameters>9 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="VARSTA" id="36D89E37-7D03-3315-1D81-827E5FB47E41">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>ELEVI</sourceObjSchema>
+<sourceObjName>VARSTA</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:34 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<constraintName>VARSTA_CHECK</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>6</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,6,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>4</beginValue>
+<endValue>30</endValue>
+</rangeDef>
+</listOfRanges>
+</Column>
+<Column name="GRUPE_ID_GRUPA" id="0AD76AC7-4F14-9D34-916E-6A8758751AE3">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>ELEVI</sourceObjSchema>
+<sourceObjName>GRUPE_ID_GRUPA</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:34 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>6</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,6,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="17B4DF8B-B3A7-94BD-8E89-F05E48E8F382" referredColumn="EB32960B-AB04-D70F-975E-FA968F7E68C5"/>
+</associations>
+</Column>
+<Column name="GRUPE_SALI_ID_SALA" id="0FD330E1-773F-F2BD-3218-384F1CFBC501">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>ELEVI</sourceObjSchema>
+<sourceObjName>GRUPE_SALI_ID_SALA</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:34 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>6</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,6,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="17B4DF8B-B3A7-94BD-8E89-F05E48E8F382" referredColumn="453A3EB6-E5E7-9098-A61C-A095B1125510"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="29871475-B194-C4FD-1820-875D22CC3711" name="ELEVI_PK">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PBD_STUD_121</sourceObjSchema>
+<sourceObjName>ELEVI_PK</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:35 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5B4236B5-CBF6-FA2F-3D8A-4478BC4AB633"/>
+<colUsage columnID="0AD76AC7-4F14-9D34-916E-6A8758751AE3"/>
+<colUsage columnID="0FD330E1-773F-F2BD-3218-384F1CFBC501"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="BEA50117-B46F-32EA-99B5-AE1BCE0096E9" schemaObject="71F9C55C-7098-D509-D335-FD8BE9A14FEF" name="ELEVI_PK">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PBD_STUD_121</sourceObjSchema>
+<sourceObjName>ELEVI_PK</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:34 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5B4236B5-CBF6-FA2F-3D8A-4478BC4AB633"/>
+<colUsage columnID="0AD76AC7-4F14-9D34-916E-6A8758751AE3"/>
+<colUsage columnID="0FD330E1-773F-F2BD-3218-384F1CFBC501"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="F817042B-E0E9-ED16-3B3F-DCE12CD29853" name="ELEVI_GRUPE_FK">
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:37 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0AD76AC7-4F14-9D34-916E-6A8758751AE3"/>
+<colUsage columnID="0FD330E1-773F-F2BD-3218-384F1CFBC501"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+<tableCheckConstraints itemClass="oracle.dbtools.crest.model.design.constraint.TableLevelConstraint">
+<tableCheckConstraint name="ELEVI_NUME_CK" directorySegmentName="seg_0" id="14A0CCE3-E4D5-2A19-17EB-1464190976A1">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PBD_STUD_121</sourceObjSchema>
+<sourceObjName>ELEVI_NUME_CK</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:36 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<rule><![CDATA[
+       length(nume) > 1]]></rule>
+</tableCheckConstraint>
+<tableCheckConstraint name="ELEVI_PRENUME_CK" directorySegmentName="seg_0" id="03C403A4-A54C-75CC-2D78-374E936BF73D">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PBD_STUD_121</sourceObjSchema>
+<sourceObjName>ELEVI_PRENUME_CK</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:36 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<rule><![CDATA[
+       length(prenume) > 1]]></rule>
+</tableCheckConstraint>
+</tableCheckConstraints>
+</Table>

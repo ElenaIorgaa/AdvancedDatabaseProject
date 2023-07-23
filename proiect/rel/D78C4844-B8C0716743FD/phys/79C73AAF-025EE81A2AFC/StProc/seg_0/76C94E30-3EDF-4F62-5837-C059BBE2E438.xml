@@ -1,0 +1,41 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<StoredProcedureOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.StoredProcedureOraclev10g" name="ADAUGARE_ELEV_LA_GRUPA" directorySegmentName="seg_0" id="76C94E30-3EDF-4F62-5837-C059BBE2E438">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PBD_STUD_121</sourceObjSchema>
+<sourceObjName>ADAUGARE_ELEV_LA_GRUPA</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:37 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<owner><![CDATA[A6A6F46F-FC61-FB2E-FC75-5FC0F42703D3]]></owner>
+<source>CREATE OR REPLACE PROCEDURE PBD_STUD_121.ADAUGARE_ELEV_LA_GRUPA
+(v_id_grupa IN grupe.statut%TYPE,
+v_id_elev IN elevi.id_elev%TYPE,
+v_flag OUT BOOLEAN)
+IS
+    v_id_sala sali.id_sala%TYPE;
+    v_nr_elevi NUMBER;
+    v_capacitate sali.capacitate%TYPE;
+BEGIN
+    SELECT sali_id_sala
+    INTO v_id_sala
+    FROM grupe
+    WHERE id_grupa = v_id_grupa;
+
+    --acum am nevoie de numarul de elevi din grupa
+    SELECT count(*)
+    INTO v_nr_elevi
+    FROM elevi
+    WHERE grupe_id_grupa = v_id_grupa;
+
+    SELECT capacitate
+    INTO v_capacitate
+    FROM sali 
+    WHERE id_sala = v_id_sala;
+
+    IF v_nr_elevi &gt;= v_capacitate THEN
+        v_flag := true;
+    ELSE 
+        v_flag := false;
+    END IF;
+END;</source>
+</StoredProcedureOraclev10g>

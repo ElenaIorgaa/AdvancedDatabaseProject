@@ -1,0 +1,91 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<PackageOracle class="oracle.dbtools.crest.model.design.storage.oracle.PackageOracle" name="TESTARE_TRIGGERI" directorySegmentName="seg_0" id="571A354F-712E-8C4C-08D8-4D67AEE69A6B">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PBD_STUD_121</sourceObjSchema>
+<sourceObjName>TESTARE_TRIGGERI</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:38 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<owner><![CDATA[A6A6F46F-FC61-FB2E-FC75-5FC0F42703D3]]></owner>
+<source>CREATE OR REPLACE PACKAGE PBD_STUD_121.TESTARE_TRIGGERI IS
+    PROCEDURE testeaza_trigger_actualizare_experienta_cadru_didactic_crapa;
+    PROCEDURE testeaza_trigger_actualizare_experienta_cadru_didactic;
+    PROCEDURE testeaza_adaugare_elev_in_spectacol_capacitate_atinsa_deja;
+    PROCEDURE testeaza_adaugare_spectacol_data_in_viitor;
+    PROCEDURE testeaza_introducere_elev_nou_grupa_unde_nu_mai_are_loc;
+END;</source>
+<body class="oracle.dbtools.crest.model.design.storage.oracle.PackageBodyOracle" name="TESTARE_TRIGGERI" id="571A354F-712E-8C4C-08D8-4D67AEE69A6B">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PBD_STUD_121</sourceObjSchema>
+<sourceObjName>TESTARE_TRIGGERI</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:38 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<owner><![CDATA[A6A6F46F-FC61-FB2E-FC75-5FC0F42703D3]]></owner>
+<source>CREATE OR REPLACE PACKAGE BODY PBD_STUD_121.TESTARE_TRIGGERI IS
+    PROCEDURE testeaza_introducere_elev_nou_grupa_unde_nu_mai_are_loc
+    IS
+    BEGIN
+        INSERT INTO elevi(statut, nume, prenume, varsta, grupe_id_grupa, grupe_sali_id_sala)
+        VALUES(&apos;incepator&apos;,&apos;ddd&apos;,&apos;ddd&apos;,6,1,1);
+         EXCEPTION
+         WHEN OTHERS THEN
+                dbms_output.put_line(&apos;Error: &apos; || SQLERRM); 
+    END;
+
+
+    PROCEDURE testeaza_adaugare_elev_in_spectacol_capacitate_atinsa_deja
+    IS
+        v_id_grupa grupe.id_grupa%TYPE;
+        v_id_spect spectacole.id_spectacol%TYPE;
+    BEGIN 
+        SELECT grupe_id_grupa 
+        INTO v_id_grupa
+        FROM elevi
+        WHERE id_elev = 12;
+
+        SELECT id_spectacol
+        INTO v_id_spect
+        FROM spectacole
+        WHERE nume_spectacol = &apos;Ghioceii&apos;;
+
+        DELETE FROM elevi_spectacol WHERE spectacole_id_spectacol = v_id_spect;
+        DELETE FROM elevi_spectacol_istoric WHERE id_spectacol = v_id_spect;
+
+        adaugare.elev_la_spectacol(10,&apos;Ghioceii&apos;);
+        adaugare.elev_la_spectacol(11,&apos;Ghioceii&apos;);
+        adaugare.elev_spect_istoric(12,v_id_grupa,v_id_spect);
+        adaugare.elev_la_spectacol(13,&apos;Ghioceii&apos;);
+    END;
+
+    PROCEDURE testeaza_trigger_actualizare_experienta_cadru_didactic_crapa
+    IS
+    BEGIN
+        actualizari.modifica_experienta_instructor(5, 6);
+        EXCEPTION
+         WHEN OTHERS THEN
+                dbms_output.put_line(&apos;Error: &apos; || SQLERRM);   
+    END;
+
+    PROCEDURE testeaza_trigger_actualizare_experienta_cadru_didactic
+    IS
+    BEGIN
+        actualizari.modifica_experienta_instructor(5, 16);
+        EXCEPTION
+         WHEN OTHERS THEN
+                dbms_output.put_line(&apos;Error: &apos; || SQLERRM);   
+    END;
+
+     PROCEDURE testeaza_adaugare_spectacol_data_in_viitor
+    IS
+    BEGIN
+        adaugare.nou_spectacol(&apos;numerge&apos;,10,&apos;2024-2-2&apos;);
+        EXCEPTION
+         WHEN OTHERS THEN
+                dbms_output.put_line(&apos;Error: &apos; || SQLERRM);
+    END;
+
+
+END;</source>
+</body>
+</PackageOracle>

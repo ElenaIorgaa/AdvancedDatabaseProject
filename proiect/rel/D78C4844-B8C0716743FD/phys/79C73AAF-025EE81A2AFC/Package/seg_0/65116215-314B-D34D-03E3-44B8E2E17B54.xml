@@ -1,0 +1,102 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<PackageOracle class="oracle.dbtools.crest.model.design.storage.oracle.PackageOracle" name="TESTARE_VIZUALIZARI" directorySegmentName="seg_0" id="65116215-314B-D34D-03E3-44B8E2E17B54">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PBD_STUD_121</sourceObjSchema>
+<sourceObjName>TESTARE_VIZUALIZARI</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:38 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<owner><![CDATA[A6A6F46F-FC61-FB2E-FC75-5FC0F42703D3]]></owner>
+<source>CREATE OR REPLACE PACKAGE PBD_STUD_121.TESTARE_VIZUALIZARI IS
+    PROCEDURE testeaza_afisare_elevi;
+    PROCEDURE testeaza_afisare_elevi_din_grupa_5;
+    PROCEDURE testeaza_afisare_elevi_din_grupa_invalida;
+    PROCEDURE testeaza_afisare_grupe_din_sala_invalida;
+    PROCEDURE testeaza_afisare_pianistul_grupei_1;
+    PROCEDURE testeaza_afisare_pianist_grupa_invalida;
+    PROCEDURE testeaza_afisare_spectacole_la_care_nu_au_fost_introdusi_elevi;
+    PROCEDURE testeaza_afisare_grupe_in_care_mai_incap_elevi;
+END;</source>
+<body class="oracle.dbtools.crest.model.design.storage.oracle.PackageBodyOracle" name="TESTARE_VIZUALIZARI" id="65116215-314B-D34D-03E3-44B8E2E17B54">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PBD_STUD_121</sourceObjSchema>
+<sourceObjName>TESTARE_VIZUALIZARI</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:38 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<owner><![CDATA[A6A6F46F-FC61-FB2E-FC75-5FC0F42703D3]]></owner>
+<source>CREATE OR REPLACE PACKAGE BODY PBD_STUD_121.TESTARE_VIZUALIZARI IS
+    PROCEDURE testeaza_afisare_elevi
+    IS
+    BEGIN
+        vizualizari.afiseaza_elevi;
+        EXCEPTION
+         WHEN OTHERS THEN
+                dbms_output.put_line(&apos;Error: &apos; || SQLERRM);
+    END;
+
+    PROCEDURE testeaza_afisare_elevi_din_grupa_5
+    IS
+    BEGIN
+        vizualizari.afiseaza_elevi_din_anumita_grupa(5);
+        EXCEPTION
+         WHEN OTHERS THEN
+                dbms_output.put_line(&apos;Error: &apos; || SQLERRM);
+    END;
+
+    PROCEDURE testeaza_afisare_elevi_din_grupa_invalida
+    IS
+    BEGIN
+        vizualizari.afiseaza_elevi_din_anumita_grupa(99999);
+        EXCEPTION
+         WHEN OTHERS THEN
+                dbms_output.put_line(&apos;Error: &apos; || SQLERRM);
+    END;
+
+    PROCEDURE testeaza_afisare_grupe_din_sala_invalida
+    IS
+    BEGIN
+        vizualizari.afiseaza_grupele_asignate_unei_anumite_sali(9999);
+        EXCEPTION
+         WHEN OTHERS THEN
+                dbms_output.put_line(&apos;Error: &apos; || SQLERRM);
+    END;
+
+    PROCEDURE testeaza_afisare_pianistul_grupei_1
+    IS
+    BEGIN
+        vizualizari.afiseaza_pianistul_unei_grupe(1);
+        EXCEPTION
+         WHEN OTHERS THEN
+                dbms_output.put_line(&apos;Error: &apos; || SQLERRM);
+    END;
+
+    PROCEDURE testeaza_afisare_pianist_grupa_invalida
+    IS
+    BEGIN
+        vizualizari.afiseaza_pianistul_unei_grupe(999);
+        EXCEPTION
+         WHEN OTHERS THEN
+                dbms_output.put_line(&apos;Error: &apos; || SQLERRM);
+    END;
+
+    PROCEDURE testeaza_afisare_spectacole_la_care_nu_au_fost_introdusi_elevi
+    IS
+    BEGIN
+        vizualizari.afiseaza_spectacolele_la_care_nu_au_fost_introdusi_elevi;
+        EXCEPTION
+         WHEN OTHERS THEN
+                dbms_output.put_line(&apos;Error: &apos; || SQLERRM);
+    END;
+
+    PROCEDURE testeaza_afisare_grupe_in_care_mai_incap_elevi
+    IS
+    BEGIN
+        vizualizari.afiseaza_grupe_in_care_mai_incap_elevi;
+         EXCEPTION
+         WHEN OTHERS THEN
+                dbms_output.put_line(&apos;Error: &apos; || SQLERRM);
+    END;
+END;</source>
+</body>
+</PackageOracle>

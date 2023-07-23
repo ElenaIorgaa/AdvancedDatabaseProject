@@ -1,0 +1,65 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<PackageOracle class="oracle.dbtools.crest.model.design.storage.oracle.PackageOracle" name="ELEVI_PKG" directorySegmentName="seg_0" id="C1D1A267-34DE-2CEC-411D-4BD6C4AFA26F">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PBD_STUD_121</sourceObjSchema>
+<sourceObjName>ELEVI_PKG</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:38 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<owner><![CDATA[A6A6F46F-FC61-FB2E-FC75-5FC0F42703D3]]></owner>
+<source>CREATE OR REPLACE PACKAGE PBD_STUD_121.ELEVI_PKG IS
+  PROCEDURE verifica_daca_incape_elev_in_grupa(
+    v_id_grupa IN grupe.statut%TYPE,
+    v_id_elev IN elevi.id_elev%TYPE);
+  FUNCTION is_capacitate_sala_depasita RETURN BOOLEAN;
+END elevi_pkg;</source>
+<body class="oracle.dbtools.crest.model.design.storage.oracle.PackageBodyOracle" name="ELEVI_PKG" id="C1D1A267-34DE-2CEC-411D-4BD6C4AFA26F">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PBD_STUD_121</sourceObjSchema>
+<sourceObjName>ELEVI_PKG</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:38 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<owner><![CDATA[A6A6F46F-FC61-FB2E-FC75-5FC0F42703D3]]></owner>
+<source>CREATE OR REPLACE PACKAGE BODY PBD_STUD_121.ELEVI_PKG IS
+  v_flag BOOLEAN := FALSE;
+
+  PROCEDURE verifica_daca_incape_elev_in_grupa(
+    v_id_grupa IN grupe.statut%TYPE,
+    v_id_elev IN elevi.id_elev%TYPE)
+  IS
+    v_id_sala sali.id_sala%TYPE;
+    v_nr_elevi NUMBER;
+    v_capacitate sali.capacitate%TYPE;
+  BEGIN
+    SELECT sali_id_sala
+    INTO v_id_sala
+    FROM grupe
+    WHERE id_grupa = v_id_grupa;
+
+    -- Get the number of elevi from the table
+    SELECT count(*)
+    INTO v_nr_elevi
+    FROM elevi
+    WHERE grupe_id_grupa = v_id_grupa;
+
+    SELECT capacitate
+    INTO v_capacitate
+    FROM sali 
+    WHERE id_sala = v_id_sala;
+
+    IF v_nr_elevi &gt; v_capacitate THEN
+      v_flag := TRUE;
+    ELSE 
+      v_flag := FALSE;
+    END IF;
+  END;
+
+  FUNCTION is_capacitate_sala_depasita RETURN BOOLEAN
+  IS
+  BEGIN
+    RETURN v_flag;
+  END;
+END elevi_pkg;</source>
+</body>
+</PackageOracle>

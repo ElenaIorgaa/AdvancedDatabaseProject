@@ -1,0 +1,274 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<PackageOracle class="oracle.dbtools.crest.model.design.storage.oracle.PackageOracle" name="TESTE_ADAUGARI" directorySegmentName="seg_0" id="7BC72590-4C44-36BB-1043-44CD9D036341">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PBD_STUD_121</sourceObjSchema>
+<sourceObjName>TESTE_ADAUGARI</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:38 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<owner><![CDATA[A6A6F46F-FC61-FB2E-FC75-5FC0F42703D3]]></owner>
+<source>CREATE OR REPLACE PACKAGE PBD_STUD_121.TESTE_ADAUGARI IS
+    PROCEDURE testeaza_adaugare_spectacol_cu_capacitate_invalida;
+    PROCEDURE testeaza_adaugare_spectacol_cu_data_invalida;
+    PROCEDURE testeaza_adaugare_spectacol_cu_data_in_viitor;
+    PROCEDURE testeaza_adaugare_spectacol_corect;
+    PROCEDURE testeaza_adaugare_elev_la_spectacol_unde_nu_mai_are_loc;
+    PROCEDURE testeaza_adaugare_elev_la_spectacol_inexistent;
+    PROCEDURE testeaza_adaugare_elev_inexistent_la_spectacol;
+    PROCEDURE testeaza_adaugare_elev_nou_cu_statut_invalid;
+    PROCEDURE testeaza_adaugare_elev_nou_cu_varsta_invalida;
+    PROCEDURE testeaza_adaugare_elev_nou_care_ar_trb_sa_ajunga_in_grupa_2;
+    PROCEDURE testeaza_adaugare_nou_instructor_pentru_grupa_care_are_deja_unul;
+    PROCEDURE testeaza_adaugare_nou_instructor;
+    PROCEDURE testeaza_adaugare_nou_instructor_care_nu_corespunde_grupei;
+    PROCEDURE testeaza_adaugare_nou_pianist_pentru_grupa_care_are_deja_unul;
+    PROCEDURE testeaza_adaugare_nou_pianist;
+    PROCEDURE testeaza_adaugare_nou_pianist_care_nu_corespunde_grupei;
+    PROCEDURE testeaza_adaugare_noua_grupa_statut_invalid;
+    PROCEDURE testeaza_adaugare_noua_grupa_in_sala_inexistenta;
+    PROCEDURE testeaza_adaugare_noua_grupa;
+    PROCEDURE testeaza_adaugare_sala_capacitate_invalida;
+    PROCEDURE testeaza_adaugare_sala_dimensiune_invalida;
+    PROCEDURE testeaza_adaugare_sala;
+END teste_adaugari;</source>
+<body class="oracle.dbtools.crest.model.design.storage.oracle.PackageBodyOracle" name="TESTE_ADAUGARI" id="7BC72590-4C44-36BB-1043-44CD9D036341">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PBD_STUD_121</sourceObjSchema>
+<sourceObjName>TESTE_ADAUGARI</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:38 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<owner><![CDATA[A6A6F46F-FC61-FB2E-FC75-5FC0F42703D3]]></owner>
+<source>CREATE OR REPLACE PACKAGE BODY PBD_STUD_121.TESTE_ADAUGARI IS
+
+    PROCEDURE testeaza_adaugare_sala_capacitate_invalida
+    IS
+    BEGIN
+        adaugare.nou_sala(11,-5);
+        EXCEPTION
+         WHEN OTHERS THEN
+            dbms_output.put_line(&apos;Error: &apos; || SQLERRM);
+    END;
+
+    PROCEDURE testeaza_adaugare_sala_dimensiune_invalida
+    IS
+    BEGIN
+    adaugare.nou_sala(2,5);
+        EXCEPTION
+         WHEN OTHERS THEN
+            dbms_output.put_line(&apos;Error: &apos; || SQLERRM);
+    END;
+
+    PROCEDURE testeaza_adaugare_sala
+    IS
+    BEGIN
+        DELETE FROM SALI
+        WHERE dimensiune = 66
+        AND capacitate = 6;
+        adaugare.nou_sala(66,6);
+        EXCEPTION
+         WHEN OTHERS THEN
+            dbms_output.put_line(&apos;Error: &apos; || SQLERRM);
+    END;
+
+
+    PROCEDURE testeaza_adaugare_noua_grupa
+    IS
+    BEGIN
+        DELETE FROM grupe WHERE statut=&apos;profesionist&apos; AND sali_id_sala = 3;
+        adaugare.nou_grupa(&apos;profesionist&apos;,3);
+        EXCEPTION
+         WHEN OTHERS THEN
+            dbms_output.put_line(&apos;Error: &apos; || SQLERRM);
+    END;
+
+    PROCEDURE testeaza_adaugare_noua_grupa_in_sala_inexistenta
+    IS
+    BEGIN
+        adaugare.nou_grupa(&apos;incepator&apos;,9999);
+        EXCEPTION
+         WHEN OTHERS THEN
+            dbms_output.put_line(&apos;Error: &apos; || SQLERRM);
+    END;
+
+    PROCEDURE testeaza_adaugare_noua_grupa_statut_invalid
+    IS
+    BEGIN
+        adaugare.nou_grupa(&apos;lalala&apos;,3);
+        EXCEPTION
+         WHEN OTHERS THEN
+            dbms_output.put_line(&apos;Error: &apos; || SQLERRM);
+    END;
+
+ PROCEDURE testeaza_adaugare_nou_pianist_care_nu_corespunde_grupei
+    IS
+    BEGIN
+        DELETE FROM PIANISTI WHERE grupe_id_grupa = 8;
+        adaugare.nou_pianist(&apos;nou&apos;,&apos;instructo&apos;,&apos;incepator&apos;,5,8);
+        EXCEPTION
+         WHEN OTHERS THEN
+            dbms_output.put_line(&apos;Error: &apos; || SQLERRM);
+    END;
+    PROCEDURE testeaza_adaugare_nou_pianist
+    IS
+    BEGIN
+        DELETE FROM PIANISTI WHERE grupe_id_grupa = 8;
+        adaugare.nou_pianist(&apos;nou&apos;,&apos;pianist&apos;,&apos;profesionist&apos;,5,8);
+        EXCEPTION
+         WHEN OTHERS THEN
+            dbms_output.put_line(&apos;Error: &apos; || SQLERRM);
+    END;
+
+    PROCEDURE testeaza_adaugare_nou_pianist_pentru_grupa_care_are_deja_unul
+    IS
+    BEGIN   
+        adaugare.nou_pianist(&apos;nou&apos;,&apos;pianist&apos;,&apos;incepator&apos;,4,4);
+        EXCEPTION
+         WHEN OTHERS THEN
+            dbms_output.put_line(&apos;Error: &apos; || SQLERRM);
+    END;
+
+
+    PROCEDURE testeaza_adaugare_nou_instructor_care_nu_corespunde_grupei
+    IS
+    BEGIN
+        DELETE FROM INSTRUCTORI WHERE grupe_id_grupa = 8;
+        adaugare.nou_instructor(&apos;nou&apos;,&apos;instructo&apos;,&apos;incepator&apos;,5,8);
+        EXCEPTION
+         WHEN OTHERS THEN
+            dbms_output.put_line(&apos;Error: &apos; || SQLERRM);
+    END;
+    PROCEDURE testeaza_adaugare_nou_instructor
+    IS
+    BEGIN
+        DELETE FROM INSTRUCTORI WHERE grupe_id_grupa = 8;
+        adaugare.nou_instructor(&apos;nou&apos;,&apos;instructo&apos;,&apos;profesionist&apos;,5,8);
+        EXCEPTION
+         WHEN OTHERS THEN
+            dbms_output.put_line(&apos;Error: &apos; || SQLERRM);
+    END;
+
+    PROCEDURE testeaza_adaugare_nou_instructor_pentru_grupa_care_are_deja_unul
+    IS
+    BEGIN   
+        adaugare.nou_instructor(&apos;nou&apos;,&apos;instructor&apos;,&apos;incepator&apos;,4,4);
+        EXCEPTION
+         WHEN OTHERS THEN
+            dbms_output.put_line(&apos;Error: &apos; || SQLERRM);
+    END;
+
+    PROCEDURE testeaza_adaugare_elev_nou_care_ar_trb_sa_ajunga_in_grupa_2   
+    IS
+    BEGIN
+        DELETE FROM elevi
+        WHERE nume = &apos;elev&apos;
+        AND prenume = &apos;nou&apos;;
+        adaugare.nou_elev(&apos;incepator&apos;,&apos;elev&apos;,&apos;nou&apos;,7);
+        EXCEPTION
+         WHEN OTHERS THEN
+            dbms_output.put_line(&apos;Error: &apos; || SQLERRM);
+    END;
+
+
+    PROCEDURE testeaza_adaugare_elev_nou_cu_varsta_invalida
+    IS
+    BEGIN
+        adaugare.nou_elev(&apos;incepator&apos;,&apos;elev&apos;,&apos;nou&apos;,1);
+        EXCEPTION
+         WHEN OTHERS THEN
+            dbms_output.put_line(&apos;Error: &apos; || SQLERRM);
+    END;
+
+
+
+    PROCEDURE testeaza_adaugare_elev_nou_cu_statut_invalid
+    IS
+    BEGIN
+        adaugare.nou_elev(&apos;statutinvalid&apos;,&apos;elev&apos;,&apos;nou&apos;,7);
+        EXCEPTION
+         WHEN OTHERS THEN
+            dbms_output.put_line(&apos;Error: &apos; || SQLERRM);
+    END;
+
+    PROCEDURE testeaza_adaugare_spectacol_cu_capacitate_invalida
+    IS
+    BEGIN
+        adaugare.nou_spectacol(&apos;Trandafirii&apos;, -2,&apos;2023-03-21&apos;);
+        EXCEPTION
+         WHEN OTHERS THEN
+            dbms_output.put_line(&apos;Error: &apos; || SQLERRM);
+    END;
+
+    PROCEDURE testeaza_adaugare_spectacol_cu_data_invalida
+    IS
+    BEGIN
+        adaugare.nou_spectacol(&apos;Trandafirii&apos;, 3,&apos;202322-21&apos;);
+        EXCEPTION
+         WHEN OTHERS THEN
+            dbms_output.put_line(&apos;Error: &apos; || SQLERRM);
+    END testeaza_adaugare_spectacol_cu_data_invalida;
+
+    PROCEDURE testeaza_adaugare_spectacol_cu_data_in_viitor
+    IS
+    BEGIN
+        adaugare.nou_spectacol(&apos;Trandafirii&apos;, 3,&apos;2023-09-21&apos;);
+        EXCEPTION
+         WHEN OTHERS THEN
+            dbms_output.put_line(&apos;Error: &apos; || SQLERRM);
+    END;
+
+     PROCEDURE testeaza_adaugare_spectacol_corect
+    IS
+        v_spectacol_nume NUMBER;
+    BEGIN
+        SELECT count(*)
+        INTO v_spectacol_nume
+        FROM spectacole
+        WHERE nume_spectacol = &apos;NOU&apos;;
+
+        IF v_spectacol_nume &gt; 0 THEN
+            DELETE FROM spectacole
+            WHERE nume_spectacol = &apos;NOU&apos;;
+        END IF;
+
+        adaugare.nou_spectacol(&apos;NOU&apos;,3,&apos;2023-2-21&apos;);
+
+         dbms_output.put_line(&apos;S-a adaugat spectacolul&apos;);
+        EXCEPTION
+         WHEN OTHERS THEN
+            dbms_output.put_line(&apos;Error: &apos; || SQLERRM);
+    END;
+
+    PROCEDURE testeaza_adaugare_elev_la_spectacol_unde_nu_mai_are_loc
+    IS
+    BEGIN
+        DELETE FROM elevi_spectacol WHERE spectacole_id_spectacol = 29;
+        adaugare.elev_la_spectacol(10,&apos;Ghioceii&apos;);
+        adaugare.elev_la_spectacol(11,&apos;Ghioceii&apos;);
+        adaugare.elev_la_spectacol(12,&apos;Ghioceii&apos;);
+        adaugare.elev_la_spectacol(13,&apos;Ghioceii&apos;);
+        EXCEPTION
+         WHEN OTHERS THEN
+            dbms_output.put_line(&apos;Error: &apos; || SQLERRM);
+    END testeaza_adaugare_elev_la_spectacol_unde_nu_mai_are_loc;
+
+    PROCEDURE testeaza_adaugare_elev_la_spectacol_inexistent
+    IS
+    BEGIN
+        adaugare.elev_la_spectacol(13,&apos;aaa&apos;);
+        EXCEPTION
+         WHEN OTHERS THEN
+            dbms_output.put_line(&apos;Error: &apos; || SQLERRM);
+    END;
+
+    PROCEDURE testeaza_adaugare_elev_inexistent_la_spectacol
+    IS
+    BEGIN
+        adaugare.elev_la_spectacol(9999,&apos;Dansand printre stele&apos;);
+        EXCEPTION
+         WHEN OTHERS THEN
+            dbms_output.put_line(&apos;Error: &apos; || SQLERRM);
+    END;
+END teste_adaugari;</source>
+</body>
+</PackageOracle>

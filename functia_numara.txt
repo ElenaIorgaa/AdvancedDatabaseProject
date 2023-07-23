@@ -1,0 +1,12 @@
+create or replace NONEDITIONABLE FUNCTION numara_la_cate_spectacole_a_participat_un_elev
+(p_id_elev elevi.id_elev%TYPE)
+RETURN NUMBER 
+IS
+    v_nr_spectacole NUMBER; 
+BEGIN
+    SELECT COUNT(*)
+    INTO v_nr_spectacole
+    FROM elevi_spectacol
+    WHERE elevi_id_elev = p_id_elev;
+    RETURN v_nr_spectacole;
+END;

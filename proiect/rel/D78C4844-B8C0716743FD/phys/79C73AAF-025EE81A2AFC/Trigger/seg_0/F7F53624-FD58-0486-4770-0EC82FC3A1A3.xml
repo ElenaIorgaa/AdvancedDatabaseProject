@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="TRG_DATA_SPECTACOL" directorySegmentName="seg_0" id="F7F53624-FD58-0486-4770-0EC82FC3A1A3">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PBD_STUD_121</sourceObjSchema>
+<sourceObjName>TRG_DATA_SPECTACOL</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:36 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<actions>INSERT, UPDATE</actions>
+<body><![CDATA[BEGIN 
+  IF(:new.data_spectacol>SYSDATE)
+  THEN
+    RAISE_APPLICATION_ERROR(-20001, 'Data invalida'||TO_CHAR(:new.data_spectacol,'DD.MM.YYYY HH24:MI:SS')||' trebuie sa fe mai mica decat data curenta.');
+  END IF;
+END;]]></body>
+<triggerTime>BEFORE</triggerTime>
+<owner>A6A6F46F-FC61-FB2E-FC75-5FC0F42703D3</owner>
+<table>FC4A8BB1-4711-2C10-E780-817AFC74B1FC</table>
+</TriggerOraclev10g>

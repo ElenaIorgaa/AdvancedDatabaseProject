@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="F467E311-9959-316D-0C9F-EF67780BABBF" containerWithKeyObject="09F73DEE-348D-8C50-8A8D-5D4111C87101" localFKIndex="710B33A5-F738-8689-EDFE-3A5E6CDDEF57" name="PIANISTI_GRUPE_FK">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PBD_STUD_121</sourceObjSchema>
+<sourceObjName>PIANISTI_GRUPE_FK</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:37 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<referredTableLongName>PBD_STUD_121.GRUPE</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>B0BCE967-7825-E909-74C3-DAA997C34581</referredTableID>
+<keyObject>94F2146D-8282-1F11-2795-4213BA6D8ECB</keyObject>
+<referredKeyID>94F2146D-8282-1F11-2795-4213BA6D8ECB</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>ID_GRUPA,SALI_ID_SALA</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

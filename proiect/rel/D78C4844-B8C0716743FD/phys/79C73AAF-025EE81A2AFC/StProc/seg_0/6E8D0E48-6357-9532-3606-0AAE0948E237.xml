@@ -1,0 +1,45 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<StoredProcedureOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.StoredProcedureOraclev10g" name="VERIFICA_DACA_INCAPE_ELEV_IN_GRUPA_TRIGGER" directorySegmentName="seg_0" id="6E8D0E48-6357-9532-3606-0AAE0948E237">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PBD_STUD_121</sourceObjSchema>
+<sourceObjName>VERIFICA_DACA_INCAPE_ELEV_IN_GRUPA_TRIGGER</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:38 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<owner><![CDATA[A6A6F46F-FC61-FB2E-FC75-5FC0F42703D3]]></owner>
+<source>CREATE OR REPLACE PROCEDURE PBD_STUD_121.VERIFICA_DACA_INCAPE_ELEV_IN_GRUPA_TRIGGER
+(v_id_grupa IN grupe.id_grupa%TYPE,
+v_flag OUT BOOLEAN)
+IS
+    v_id_sala sali.id_sala%TYPE;
+    v_nr_elevi NUMBER;
+    v_capacitate sali.capacitate%TYPE;
+BEGIN
+    SELECT sali_id_sala
+    INTO v_id_sala
+    FROM grupe
+    WHERE id_grupa = v_id_grupa;
+
+    --acum am nevoie de numarul de elevi din grupa
+    SELECT count(*)
+    INTO v_nr_elevi
+    FROM elevi
+    WHERE grupe_id_grupa = v_id_grupa;
+
+    SELECT capacitate
+    INTO v_capacitate
+    FROM sali 
+    WHERE id_sala = v_id_sala;
+
+--    dbms_output.put_line(&apos;Pentru grupa &apos;||v_id_grupa);
+--    dbms_output.put_line(&apos;Pentru sala &apos;||v_id_sala);
+--    dbms_output.put_line(&apos;Capacitatea este &apos;||v_capacitate);
+--    dbms_output.put_line(&apos;si s-au gasit &apos;||v_nr_elevi);
+
+    IF v_nr_elevi &gt; v_capacitate THEN
+        v_flag := true;
+    ELSE 
+        v_flag := false;
+    END IF;
+END;</source>
+</StoredProcedureOraclev10g>

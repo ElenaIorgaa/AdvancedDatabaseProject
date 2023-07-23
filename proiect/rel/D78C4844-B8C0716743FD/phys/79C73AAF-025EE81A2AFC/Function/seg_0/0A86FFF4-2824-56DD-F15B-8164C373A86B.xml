@@ -1,0 +1,22 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FunctionOracle class="oracle.dbtools.crest.model.design.storage.oracle.FunctionOracle" name="NUMARA_LA_CATE_SPECTACOLE_A_PARTICIPAT_UN_ELEV" directorySegmentName="seg_0" id="0A86FFF4-2824-56DD-F15B-8164C373A86B">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PBD_STUD_121</sourceObjSchema>
+<sourceObjName>NUMARA_LA_CATE_SPECTACOLE_A_PARTICIPAT_UN_ELEV</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:39 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<owner><![CDATA[A6A6F46F-FC61-FB2E-FC75-5FC0F42703D3]]></owner>
+<source>CREATE OR REPLACE FUNCTION PBD_STUD_121.NUMARA_LA_CATE_SPECTACOLE_A_PARTICIPAT_UN_ELEV
+(p_id_elev elevi.id_elev%TYPE)
+RETURN NUMBER 
+IS
+    v_nr_spectacole NUMBER; 
+BEGIN
+    SELECT COUNT(*)
+    INTO v_nr_spectacole
+    FROM elevi_spectacol
+    WHERE elevi_id_elev = p_id_elev;
+    RETURN v_nr_spectacole;
+END;</source>
+</FunctionOracle>

@@ -1,0 +1,104 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<PackageOracle class="oracle.dbtools.crest.model.design.storage.oracle.PackageOracle" name="TESTE_ACTUALIZARI" directorySegmentName="seg_0" id="B5F3422A-C708-750D-8143-5714AB686308">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PBD_STUD_121</sourceObjSchema>
+<sourceObjName>TESTE_ACTUALIZARI</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:38 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<owner><![CDATA[A6A6F46F-FC61-FB2E-FC75-5FC0F42703D3]]></owner>
+<source>CREATE OR REPLACE PACKAGE PBD_STUD_121.TESTE_ACTUALIZARI IS
+    PROCEDURE testeaza_modifica_statut_grupa;
+    PROCEDURE testeaza_modifica_statut_invalid_grupa;
+    PROCEDURE testeaza_modifica_experienta_daca_e_invalida_conform_triggerului_instructor;
+    PROCEDURE testeaza_modifica_experienta_instructor;
+    PROCEDURE testeaza_modifica_experienta_daca_e_invalida_conform_triggerului_pianist;
+    PROCEDURE testeaza_modifica_experienta_pianist;
+END teste_actualizari;</source>
+<body class="oracle.dbtools.crest.model.design.storage.oracle.PackageBodyOracle" name="TESTE_ACTUALIZARI" id="B5F3422A-C708-750D-8143-5714AB686308">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PBD_STUD_121</sourceObjSchema>
+<sourceObjName>TESTE_ACTUALIZARI</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:38 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<owner><![CDATA[A6A6F46F-FC61-FB2E-FC75-5FC0F42703D3]]></owner>
+<source>CREATE OR REPLACE PACKAGE BODY PBD_STUD_121.TESTE_ACTUALIZARI IS
+
+     PROCEDURE testeaza_modifica_experienta_pianist
+    IS
+    BEGIN
+        actualizari.modifica_experienta_pianist(7, 21);
+        EXCEPTION
+         WHEN OTHERS THEN
+                dbms_output.put_line(&apos;Error: &apos; || SQLERRM);   
+    END;
+
+    PROCEDURE testeaza_modifica_experienta_daca_e_invalida_conform_triggerului_pianist
+    IS
+    BEGIN
+        actualizari.modifica_experienta_pianist(7, 5);
+        EXCEPTION
+         WHEN OTHERS THEN
+                dbms_output.put_line(&apos;Error: &apos; || SQLERRM);   
+    END;
+
+
+     PROCEDURE testeaza_modifica_experienta_instructor
+    IS
+    BEGIN
+        actualizari.modifica_experienta_instructor(21, 5);
+        EXCEPTION
+         WHEN OTHERS THEN
+                dbms_output.put_line(&apos;Error: &apos; || SQLERRM);   
+    END;
+
+    PROCEDURE testeaza_modifica_experienta_daca_e_invalida_conform_triggerului_instructor
+    IS
+    BEGIN
+        actualizari.modifica_experienta_instructor(2, 5);
+        EXCEPTION
+         WHEN OTHERS THEN
+                dbms_output.put_line(&apos;Error: &apos; || SQLERRM);   
+    END;
+
+    PROCEDURE testeaza_modifica_statut_grupa
+    IS  v_id_grupa GRUPE.id_grupa%TYPE;
+    v_id_sala sali.id_sala%TYPE;
+    BEGIN
+        SELECT max(id_grupa)
+        INTO v_id_grupa
+        FROM grupe;
+
+        SELECT sali_id_sala
+        INTO v_id_sala
+        FROM grupe
+        WHERE id_grupa = v_id_grupa;
+
+        actualizari.modifica_statut_grupa(v_id_grupa, &apos;incepator&apos;);
+        INSERT INTO elevi(statut, nume, prenume, varsta, grupe_id_grupa,grupe_sali_id_sala)
+        VALUES (&apos;incepator&apos;, &apos;ccc&apos;,&apos;ccc&apos;,7,v_id_grupa,v_id_sala);
+
+        actualizari.modifica_statut_grupa(v_id_grupa, &apos;profesionist&apos;);
+        EXCEPTION
+         WHEN OTHERS THEN
+                dbms_output.put_line(&apos;Error: &apos; || SQLERRM);   
+    END;
+
+    PROCEDURE testeaza_modifica_statut_invalid_grupa
+    IS  v_id_grupa GRUPE.id_grupa%TYPE;
+    BEGIN
+        SELECT max(id_grupa)
+        INTO v_id_grupa
+        FROM grupe;
+
+        actualizari.modifica_statut_grupa(v_id_grupa, &apos;lalala&apos;);
+
+        EXCEPTION
+         WHEN OTHERS THEN
+                dbms_output.put_line(&apos;Error: &apos; || SQLERRM);   
+    END;
+
+END teste_actualizari;</source>
+</body>
+</PackageOracle>

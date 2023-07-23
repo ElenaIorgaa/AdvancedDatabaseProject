@@ -1,0 +1,150 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<PackageOracle class="oracle.dbtools.crest.model.design.storage.oracle.PackageOracle" name="AVANSARE_ELEVI" directorySegmentName="seg_0" id="2A52289A-9AE4-0E2D-30F7-D76D3A40E469">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PBD_STUD_121</sourceObjSchema>
+<sourceObjName>AVANSARE_ELEVI</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:38 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<owner><![CDATA[A6A6F46F-FC61-FB2E-FC75-5FC0F42703D3]]></owner>
+<source>CREATE OR REPLACE PACKAGE PBD_STUD_121.AVANSARE_ELEVI IS
+g_trigger_invoked BOOLEAN := FALSE;
+  PROCEDURE modifica(p_id_elev elevi.id_elev%TYPE); 
+END avansare_elevi;</source>
+<body class="oracle.dbtools.crest.model.design.storage.oracle.PackageBodyOracle" name="AVANSARE_ELEVI" id="2A52289A-9AE4-0E2D-30F7-D76D3A40E469">
+<sourceConnName>facultate</sourceConnName>
+<sourceObjSchema>PBD_STUD_121</sourceObjSchema>
+<sourceObjName>AVANSARE_ELEVI</sourceObjName>
+<createdBy>eiorg</createdBy>
+<createdTime>2023-05-31 09:14:38 UTC</createdTime>
+<ownerDesignName>proiect </ownerDesignName>
+<owner><![CDATA[A6A6F46F-FC61-FB2E-FC75-5FC0F42703D3]]></owner>
+<source>CREATE OR REPLACE PACKAGE BODY PBD_STUD_121.AVANSARE_ELEVI IS
+
+    FUNCTION urmatoarul_statut
+        (statut_curent elevi.statut%TYPE)
+        RETURN elevi.statut%TYPE
+        IS
+            v_statut_nou elevi.statut%TYPE;
+            statut_inexistent EXCEPTION;
+            nu_mai_poate_avansa EXCEPTION;
+
+        BEGIN
+            IF statut_curent = &apos;incepator&apos; THEN
+                v_statut_nou := &apos;mediu&apos;;
+            ELSIF statut_curent = &apos;mediu&apos; THEN
+                v_statut_nou := &apos;avansat&apos;;
+            ELSIF statut_curent = &apos;avansat&apos; THEN
+                v_statut_nou := &apos;profesionist&apos;;
+            ELSIF statut_curent = &apos;profesionist&apos; THEN
+                RAISE nu_mai_poate_avansa;
+            ELSE 
+                RAISE statut_inexistent;
+            END IF;
+            RETURN v_statut_nou;
+            EXCEPTION
+                when statut_inexistent THEN
+                    RAISE_APPLICATION_ERROR(-20006, &apos;Statut invalid&apos;);
+                WHEN nu_mai_poate_avansa THEN
+                    RAISE_APPLICATION_ERROR(-20010, &apos;Elevul nu mai poate avansa&apos;);
+                when others THEN    
+                    dbms_output.put_line(&apos;Error: &apos; || SQLERRM);
+    END urmatoarul_statut;
+
+    PROCEDURE modifica
+        (p_id_elev elevi.id_elev%TYPE)
+        IS
+            v_statut_nou elevi.statut%TYPE;
+            v_statut_vechi elevi.statut%TYPE;
+
+            TYPE date_table_type IS TABLE OF elevi.grupe_id_grupa%TYPE
+                INDEX BY BINARY_INTEGER;
+            data_table date_table_type;
+
+            TYPE typ_spect_rec IS RECORD (
+                id_grp grupe.id_grupa%TYPE);
+            TYPE typ_spect IS REF CURSOR RETURN typ_spect_rec;
+
+
+            grp typ_spect;
+            indx NUMBER := 0;
+            v_flag BOOLEAN;
+
+            v_curent NUMBER;
+            v_grupa_gasita BOOLEAN := false;
+
+            inca_nu_avanseaza EXCEPTION;
+            nu_exista_grupe_cu_acest_statut EXCEPTION;
+
+            v_row_s elevi_spectacol%ROWTYPE;
+
+    CURSOR c_spect IS
+        SELECT * FROM elevi_spectacol
+        WHERE elevi_id_elev = p_id_elev;
+
+        BEGIN 
+            verificari.verifica_daca_exista_elev(p_id_elev);
+
+            SELECT statut
+            INTO v_statut_vechi
+            FROM elevi
+            WHERE id_elev = p_id_elev;
+
+            v_statut_nou := urmatoarul_statut(v_statut_vechi);
+
+            OPEN grp 
+                FOR SELECT id_grupa
+                FROM grupe
+                WHERE statut = v_statut_nou;
+            LOOP
+                FETCH grp INTO data_table(indx);
+                EXIT WHEN grp%NOTFOUND;
+                indx := indx + 1;
+            END LOOP;
+            CLOSE grp;
+
+            v_curent := data_table.first;
+            SAVEPOINT start_modifica;
+             actualizari.modifica_statut_elev(p_id_elev, v_statut_nou); 
+            WHILE v_curent &lt;= data_table.last and v_grupa_gasita = false LOOP
+                verifica_daca_incape_elev_in_grupa(data_table(v_curent), v_flag);
+                IF v_flag = false THEN
+
+                    OPEN c_spect;
+
+                    LOOP    
+                        FETCH c_spect INTO v_row_s;
+                        EXIT when c_spect%NOTFOUND;
+                        adaugare.elev_spect_istoric(p_id_elev, v_row_s.elevi_id_grupa, v_row_s.spectacole_id_spectacol);
+                    END LOOP;
+
+                    stergeri.sterge_spectacolele_la_care_a_participat_un_elev(p_id_elev);
+
+                    v_grupa_gasita := true;
+
+                    actualizari.modifica_elev_statut_grupa_sala(p_id_elev, data_table(v_curent), v_statut_nou);
+
+                    END IF;
+                    v_curent := data_table.next(v_curent);
+                END LOOP;
+                IF v_grupa_gasita = false THEN    
+                    ROLLBACK to start_modifica;
+                    RAISE inca_nu_avanseaza;
+                END IF;
+                commit;
+            EXCEPTION 
+                    WHEN inca_nu_avanseaza THEN
+                        rollback;
+                        RAISE_APPLICATION_ERROR(-20007, &apos;Inca nu se poate muta elevul, se va astepta pana se elibereaza un loc&apos;);
+                    WHEN nu_exista_grupe_cu_acest_statut THEN
+                        rollback;
+                        RAISE_APPLICATION_ERROR(-20008, &apos;Nu s-au gasit grupe cu acel statut&apos;);
+                    when others THEN    
+                        rollback;
+                        dbms_output.put_line(&apos;Error: &apos; || SQLERRM);
+
+    END modifica;
+
+END avansare_elevi;</source>
+</body>
+</PackageOracle>
